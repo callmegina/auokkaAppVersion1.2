@@ -21,11 +21,6 @@ const FruitsComponent = props => {
 
     const products = useSelector(state => state.products.availableProducts);
 
-    const productId = props.navigation.getParam('productId');
-    const selectedProduct = useSelector(state =>
-        state.products.availableProducts.find(prod => prod.id === productId)
-    );
-    const dispatch = useDispatch();
 
     return (
         <FlatList
@@ -37,22 +32,28 @@ const FruitsComponent = props => {
                     origPrice={itemData.item.origPrice}
                     amount={itemData.item.amount}
                     onViewDetail={() => {
-                        this.props.navigation.navigate('ProductDetailScreen')
+                        props.navigation.navigate('ProductsOverviewScreen', {
+                            productId: itemData.item.id,
+                            productTitle: itemData.item.title
+                        });
                     }}
+
                     onPress={() => {
                         dispatch(cartActions.addToCart(selectedProduct));
                     }}
-
                 />
+
+
             )}
         />
+
     );
 };
 
 FruitsComponent.navigationOptions = navData => {
     const { navigation } = navData;
     return {
-        headerTitle: navData.navigation.getParam('productTitile')
+        headerTitle: navData.navigation.getParam('productId')
     };
 };
 

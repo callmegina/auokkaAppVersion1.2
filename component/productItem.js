@@ -15,6 +15,8 @@ import { render } from "react-dom";
 
 const ProductItem = props => {
 
+
+
     return (
         <View>
             <ScrollView>
@@ -22,10 +24,13 @@ const ProductItem = props => {
                     <CardItem >
                         <View style={styles.secondDivTwo}>
                             <View style={styles.secondDivTwoOne}>
-                                <TouchableOpacity onPress={props.onViewDetail} >
+                                <TouchableOpacity onPress={() => props.onViewDetail()} >
                                     <Image
-                                        source={require('../assets/bread.png')}
-                                        style={{ width: 50, height: 60 }}
+                                        source={require('../assets/strawberry.png')}
+                                        style={{
+                                            width: 40,
+                                            height: 50
+                                        }}
                                     />
                                 </TouchableOpacity>
                             </View>
@@ -53,7 +58,7 @@ const ProductItem = props => {
                                     </TouchableOpacity>
                                     <Text style={{
                                         fontSize: 15,
-                                    }}>10</Text>
+                                    }}>0</Text>
                                     <TouchableOpacity >
                                         <Feather name='plus-circle' color='#60c73a' size={26} />
                                     </TouchableOpacity>

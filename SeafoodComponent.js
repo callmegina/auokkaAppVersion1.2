@@ -30,12 +30,14 @@ const SeafoodComponent = props => {
                     title={itemData.item.title}
                     origPrice={itemData.item.origPrice}
                     amount={itemData.item.amount}
-                    onViewDetail={() => {
-                        this.props.navigation.navigate('ProductDetailScreen', {
-                            productId: itemData.item.id,
-                            productTitle: itemData.item.title
-                        });
-                    }}
+
+
+
+                    onViewDetail={() =>
+                        this.props.navigate('CartStackNavigator', {
+                            screen: 'ProductsOverviewScreen',
+                            params: { selectedFruitID: itemData.item.id },
+                        })}
                 />
             )}
         />

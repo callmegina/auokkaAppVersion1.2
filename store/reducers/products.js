@@ -2,7 +2,10 @@ import PRODUCTS from '../../dummy_data_product';
 
 const initialState = {
     availableProducts: PRODUCTS,
+    filteredProducts: []
 };
-export default (state = initialState, action) => {
+const ProductReducer = (state = initialState, action) => {
     return state;
 };
+
+export default ProductReducer;

@@ -14,7 +14,6 @@ import { Feather } from '@expo/vector-icons';
 import FruitsComponent from "./fruitsComponent";
 import SeafoodComponent from './SeafoodComponent';
 
-
 export default class HomeEdited extends React.Component {
 
     constructor(props) {
@@ -27,16 +26,14 @@ export default class HomeEdited extends React.Component {
         this._onClickItem = this._onClickItem.bind(this);
         this.renderFoodCategory = this.renderFoodCategory.bind(this);
 
-
     }
     _onClickItem(foodSelected) {
-        console.log("set state", foodSelected);
+
         this.setState({
-            itemSelected: String(foodSelected),
+            itemSelected: String(foodSelected)
         });
-
+        console.log(foodSelected)
     }
-
     _selectItem(item) {
         return (
             <TouchableOpacity style={styles.itemTextView}
@@ -118,7 +115,6 @@ export default class HomeEdited extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
 
     itemDefaultColor: {
         color: 'black',

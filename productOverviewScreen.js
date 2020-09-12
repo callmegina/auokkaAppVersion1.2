@@ -14,7 +14,7 @@ import {
 import { Feather } from '@expo/vector-icons';
 import Swiper from 'react-native-swiper';
 
-
+import FruitComponent from './fruitsComponent';
 import { useSelector, useDispatch } from 'react-redux';
 const { width } = Dimensions.get('window');
 const height = width * 10 / 300;
@@ -24,21 +24,30 @@ import * as cartActions from './store/actions/cart';
 import ProductItem from './component/productItem';
 
 const ProductsOverviewScreen = props => {
+
+
+    const availableProducts = useSelector(state => state.products.filteredProducts);
+    const displayedProductrs = availableProducts.filter(
+        products => products.id.indexOf(productId) >= 0
+    )
     const products = useSelector(state => state.products.availableProducts);
-    const dispatch = useDispatch();
+
 
     return (
-        <FlatList
-            data={products}
-            keyExtractor={item => item.id}
-            renderItem={itemData => (
-                <ProductItem
-                    title={itemData.item.title}
-                    origPrice={itemData.item.origPrice}
-                    amount={itemData.item.amount}
-                />
-            )}
-        />
+
+        <View>
+            <FlatList
+                data={products}
+                keyExtractor={item => item.id}
+                renderItem={itemData => (
+                    <ProductItem
+                        title={itemData.item.title}
+                        origPrice={itemData.item.origPrice}
+                        amount={itemData.item.amount}
+                    />
+                )}
+            />
+        </View>
     )
 }
 export default ProductsOverviewScreen;
