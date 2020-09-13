@@ -8,7 +8,7 @@ import ShoppingCart from './shoppingCartScreen';
 import AddShipAddress from './addShipAddressScreen';
 import ShipAddressScreen from './shipAddressScreen';
 import ProductDetailScreen from './productDetailScreen';
-import ProductsOverviewScreen from './productOverviewScreen';
+import ProductDetailDraft from './ProductDetailDraft';
 import HomeEdited from './homeEditedScreen';
 
 import FruitsComponent from './fruitsComponent';
@@ -34,7 +34,9 @@ const MainStackNavigator = () => {
             <Stack.Screen name="Home" component={HomeEdited} />
             <Stack.Screen name="Fruit" component={FruitsComponent} />
             <Stack.Screen name="Seafood" component={SeafoodComponent} />
+
             <Stack.Screen name="Product Detail" component={ProductDetailScreen} />
+            <Stack.Screen name="Product Detail Draft" component={ProductDetailDraft} />
             <Stack.Screen name="Shopping Cart" component={CartStackNavigator} />
         </Stack.Navigator>
     );

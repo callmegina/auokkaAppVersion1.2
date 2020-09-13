@@ -24,6 +24,7 @@ const FruitsComponent = props => {
     const products = useSelector(state => state.products.availableProducts);
 
     return (
+
         <FlatList
             data={products}
             keyExtractor={item => item.id}
@@ -33,7 +34,10 @@ const FruitsComponent = props => {
                     origPrice={itemData.item.origPrice}
                     amount={itemData.item.amount}
                     onViewDetail={() => {
-                        navigation.navigate('Product Detail')
+                        navigation.navigate({
+                            name: 'Product Detail',
+                            productID: itemData.item.id,
+                        })
                     }}
 
                     onPress={() => {
@@ -41,17 +45,17 @@ const FruitsComponent = props => {
                     }}
                 />
             )}
+
+
         />
 
-    );
+    )
+
+
 };
 
-FruitsComponent.navigationOptions = navData => {
-    const { navigation } = navData;
-    return {
-        headerTitle: navData.navigation.getParam('productId')
-    };
-};
+
+
 
 
 export default FruitsComponent;

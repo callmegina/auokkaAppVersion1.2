@@ -15,8 +15,6 @@ import { render } from "react-dom";
 
 const ProductItem = props => {
 
-
-
     return (
         <View>
             <ScrollView>
@@ -24,19 +22,21 @@ const ProductItem = props => {
                     <CardItem >
                         <View style={styles.secondDivTwo}>
                             <View style={styles.secondDivTwoOne}>
-                                <TouchableOpacity onPress={() => props.onViewDetail()} >
-                                    <Image
-                                        source={require('../assets/strawberry.png')}
-                                        style={{
-                                            width: 40,
-                                            height: 50
-                                        }}
-                                    />
-                                </TouchableOpacity>
+
+                                <Image
+                                    source={require('../assets/strawberry.png')}
+                                    style={{
+                                        width: 55,
+                                        height: 65
+                                    }}
+                                />
+
                             </View>
 
                             <View style={styles.secondDivTwoTwo}>
-                                <Text>{props.title}</Text>
+                                <TouchableOpacity onPress={props.onViewDetail}>
+                                    <Text>{props.title}</Text>
+                                </TouchableOpacity>
                                 <View style={{
                                     padding: 12,
                                     backgroundColor: '#f2f2f2',
@@ -45,8 +45,10 @@ const ProductItem = props => {
                                     width: '95%',
                                     marginTop: 5,
                                 }} >
+
                                     <Text>{props.amount}</Text>
                                 </View>
+
                             </View>
 
 

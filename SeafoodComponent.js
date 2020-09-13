@@ -35,7 +35,7 @@ const SeafoodComponent = (props) => {
                     origPrice={itemData.item.origPrice}
                     amount={itemData.item.amount}
                     onViewDetail={() =>
-                        navigation.navigate('Product Detail')}
+                        navigation.navigate('Product Detail Draft')}
                 />
             )} />
     )

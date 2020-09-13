@@ -1,8 +1,11 @@
 import PRODUCTS from '../../dummy_data_product';
 
 const initialState = {
+    products: PRODUCTS,
     availableProducts: PRODUCTS,
-    filteredProducts: []
+    filteredProducts: PRODUCTS,
+    selectedProducts: []
+
 };
 const ProductReducer = (state = initialState, action) => {
     return state;
