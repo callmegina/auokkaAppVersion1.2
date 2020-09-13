@@ -14,6 +14,9 @@ import { Feather } from '@expo/vector-icons';
 import FruitsComponent from "./fruitsComponent";
 import SeafoodComponent from './SeafoodComponent';
 
+
+
+
 export default class HomeEdited extends React.Component {
 
     constructor(props) {
@@ -27,6 +30,8 @@ export default class HomeEdited extends React.Component {
         this.renderFoodCategory = this.renderFoodCategory.bind(this);
 
     }
+
+
     _onClickItem(foodSelected) {
 
         this.setState({

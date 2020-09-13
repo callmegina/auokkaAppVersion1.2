@@ -14,12 +14,16 @@ import {
 } from 'native-base';
 
 import { Feather } from '@expo/vector-icons';
+import { render } from "react-dom";
+import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
+const SeafoodComponent = (props) => {
 
-const SeafoodComponent = props => {
 
     const products = useSelector(state => state.products.availableProducts);
     const dispatch = useDispatch();
+    const navigation = useNavigation();
 
     return (
         <FlatList
@@ -30,19 +34,12 @@ const SeafoodComponent = props => {
                     title={itemData.item.title}
                     origPrice={itemData.item.origPrice}
                     amount={itemData.item.amount}
-
-
-
                     onViewDetail={() =>
-                        this.props.navigate('CartStackNavigator', {
-                            screen: 'ProductsOverviewScreen',
-                            params: { selectedFruitID: itemData.item.id },
-                        })}
+                        navigation.navigate('Product Detail')}
                 />
-            )}
-        />
-    );
-};
+            )} />
+    )
+}
 
 
 export default SeafoodComponent;

@@ -15,12 +15,13 @@ import {
 } from 'native-base';
 
 import { Feather } from '@expo/vector-icons';
+import { useNavigation, navigation } from '@react-navigation/native';
 
 
 const FruitsComponent = props => {
+    const navigation = useNavigation();
 
     const products = useSelector(state => state.products.availableProducts);
-
 
     return (
         <FlatList
@@ -32,18 +33,13 @@ const FruitsComponent = props => {
                     origPrice={itemData.item.origPrice}
                     amount={itemData.item.amount}
                     onViewDetail={() => {
-                        props.navigation.navigate('ProductsOverviewScreen', {
-                            productId: itemData.item.id,
-                            productTitle: itemData.item.title
-                        });
+                        navigation.navigate('Product Detail')
                     }}
 
                     onPress={() => {
                         dispatch(cartActions.addToCart(selectedProduct));
                     }}
                 />
-
-
             )}
         />
 

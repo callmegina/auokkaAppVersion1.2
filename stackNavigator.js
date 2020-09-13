@@ -11,8 +11,8 @@ import ProductDetailScreen from './productDetailScreen';
 import ProductsOverviewScreen from './productOverviewScreen';
 import HomeEdited from './homeEditedScreen';
 
-
-
+import FruitsComponent from './fruitsComponent';
+import SeafoodComponent from './SeafoodComponent';
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
@@ -27,12 +27,15 @@ const screenOptionStyle = {
 
 
 
-const MainStackNavigator = ({ navigation }) => {
+
+const MainStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="ProductOverview" component={HomeEdited} />
-            <Stack.Screen name="Home" component={ProductsOverviewScreen} />
-            <Stack.Screen name="ShoppingCart" component={CartStackNavigator} />
+            <Stack.Screen name="Home" component={HomeEdited} />
+            <Stack.Screen name="Fruit" component={FruitsComponent} />
+            <Stack.Screen name="Seafood" component={SeafoodComponent} />
+            <Stack.Screen name="Product Detail" component={ProductDetailScreen} />
+            <Stack.Screen name="Shopping Cart" component={CartStackNavigator} />
         </Stack.Navigator>
     );
 }
@@ -40,10 +43,10 @@ const MainStackNavigator = ({ navigation }) => {
 const CartStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="ShoppingCar" component={ShoppingCart} />
-            <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
-            <Stack.Screen name="AddShipAddress" component={AddShipAddress} />
-            <Stack.Screen name="ShipAddressScreen" component={ShipAddressScreen} />
+            <Stack.Screen name="Shopping Cart" component={ShoppingCart} />
+            <Stack.Screen name="Product Detail" component={ProductDetailScreen} />
+            <Stack.Screen name="Add Shipping Address" component={AddShipAddress} />
+            <Stack.Screen name="ShipAddress Screen" component={ShipAddressScreen} />
         </Stack.Navigator>
     );
 }
@@ -53,9 +56,9 @@ const ProfileStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
             <Stack.Screen name="Profile" component={Profile} />
-            <Stack.Screen name="ShipAddressScreen" component={ShipAddressScreen} />
-            <Stack.Screen name="AddShipAddress" component={AddShipAddress} />
-            <Stack.Screen name="OrderScreen" component={OrderScreen} />
+            <Stack.Screen name="ShipAddress Screen" component={ShipAddressScreen} />
+            <Stack.Screen name="Add Shipping Address" component={AddShipAddress} />
+            <Stack.Screen name="Order Screen" component={OrderScreen} />
         </Stack.Navigator>
 
     );

@@ -25,6 +25,7 @@ import ProductItem from './component/productItem';
 
 const ProductsOverviewScreen = props => {
 
+    const navigation = useNavigation();
 
     const availableProducts = useSelector(state => state.products.filteredProducts);
     const displayedProductrs = availableProducts.filter(
