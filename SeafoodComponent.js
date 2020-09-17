@@ -32,10 +32,10 @@ const SeafoodComponent = (props) => {
             renderItem={itemData => (
                 <ProductItem
                     title={itemData.item.title}
-                    origPrice={itemData.item.origPrice}
                     amount={itemData.item.amount}
+                    price={itemData.item.price}
                     onViewDetail={() =>
-                        navigation.navigate('Product Detail Draft')}
+                        navigation.navigate('Cart Screen')}
                 />
             )} />
     )

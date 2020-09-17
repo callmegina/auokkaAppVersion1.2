@@ -22,7 +22,7 @@ export default class HomeEdited extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: true,
+
             counter: 0,
             itemSelected: '',
         }

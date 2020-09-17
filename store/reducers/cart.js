@@ -1,6 +1,6 @@
 import { ADD_TO_CART } from '../actions/cart';
 import CartItem from '../../models/cart-item';
-import { CardItem } from 'native-base';
+
 
 const initialState = {
     items: {},
@@ -14,8 +14,8 @@ export default (state = initialState, action) => {
             const prodPrice = addedProduct.price;
             const prodTitle = addedProduct.title;
             let updatedOrNewCartItem;
-            if (state.item[addedProduct.id]) {
-                updatedOrNewCartItem = new CardItem(
+            if (state.items[addedProduct.id]) {
+                updatedOrNewCartItem = new CartItem(
                     state.items[addedProduct.id].quantity + 1,
                     prodPrice,
                     prodTitle,
@@ -23,11 +23,13 @@ export default (state = initialState, action) => {
                 );
 
             } else {
-                updatedOrNewCartItem = new CardItem(1, prodPrice, prodTitle, prodPrice)
+                updatedOrNewCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice)
             } return {
+
                 ...state,
                 items: { ...state.items, [addedProduct.id]: updatedOrNewCartItem },
                 totalAmount: state.totalAmount + prodPrice
+
             };
     }
 

@@ -4,15 +4,18 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Profile from './profileScreen';
 import OrderScreen from './myOrderScreen';
-import ShoppingCart from './shoppingCartScreen';
+
 import AddShipAddress from './addShipAddressScreen';
 import ShipAddressScreen from './shipAddressScreen';
-import ProductDetailScreen from './productDetailScreen';
-import ProductDetailDraft from './ProductDetailDraft';
+
+
 import HomeEdited from './homeEditedScreen';
 
 import FruitsComponent from './fruitsComponent';
 import SeafoodComponent from './SeafoodComponent';
+
+import CartScreen from './cartScreen';
+
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
@@ -33,11 +36,10 @@ const MainStackNavigator = () => {
         <Stack.Navigator screenOptions={screenOptionStyle}>
             <Stack.Screen name="Home" component={HomeEdited} />
             <Stack.Screen name="Fruit" component={FruitsComponent} />
+            <Stack.Screen name="Cart Screen" component={CartScreen} />
+
             <Stack.Screen name="Seafood" component={SeafoodComponent} />
 
-            <Stack.Screen name="Product Detail" component={ProductDetailScreen} />
-            <Stack.Screen name="Product Detail Draft" component={ProductDetailDraft} />
-            <Stack.Screen name="Shopping Cart" component={CartStackNavigator} />
         </Stack.Navigator>
     );
 }
@@ -45,8 +47,7 @@ const MainStackNavigator = () => {
 const CartStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Shopping Cart" component={ShoppingCart} />
-            <Stack.Screen name="Product Detail" component={ProductDetailScreen} />
+            <Stack.Screen name="Cart Screen" component={CartScreen} />
             <Stack.Screen name="Add Shipping Address" component={AddShipAddress} />
             <Stack.Screen name="ShipAddress Screen" component={ShipAddressScreen} />
         </Stack.Navigator>

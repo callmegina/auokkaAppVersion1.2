@@ -70,7 +70,7 @@ const ProductItem = props => {
                                 }}>
                                     <Text style={{
                                         color: 'red',
-                                    }}>${props.origPrice}</Text>
+                                    }}>${props.price}</Text>
                                     <TouchableOpacity onPress={props.onAddToCart}><Text>加入购物车</Text></TouchableOpacity>
                                 </View>
                             </View>

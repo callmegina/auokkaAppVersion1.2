@@ -1,19 +1,49 @@
 import React from "react";
 import {
-    View, Button, Text, StyleSheet
-    , TextInput, TouchableOpacity, Image,
-    ScrollView
+    View, Button, Text, StyleSheet,
+    TouchableOpacity, Image, FlatList,
+    ScrollView, TextInput
+
 } from "react-native";
 
 import {
-    Card, CardItem,
-    Icon, Container
+    Container, Header, CardItem, List,
+    ListItem, Icon, Content, Footer,
+    FooterTab, Badge, Card, Alert
 } from 'native-base';
 
 import { Feather } from '@expo/vector-icons';
 
-const ShoppingCart = ({ navigation }) => {
+
+import { useNavigation, navigation } from '@react-navigation/native';
+import Product from "./models/product";
+import CartItem from './component/cartItem';
+import * as cartActions from './store/actions/cart';
+import { useSelector, useDispatch } from 'react-redux';
+
+const CartScreen = props => {
+
+    const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+    const cartItems = useSelector(state => {
+        const transformedCartItems = [];
+        for (const key in state.cart.items) {
+            transformedCartItems.push({
+                productId: key,
+                productTitle: state.cart.items[key].productTitle,
+                productPrice: state.cart.items[key].productPrice,
+                quantity: state.cart.items[key].quantity,
+                sum: state.cart.items[key].sum,
+
+            });
+        }
+        return transformedCartItems.sort((a, b) =>
+            a.productId > b.productId ? 1 : -1
+        );
+    });
+    const dispatch = useDispatch();
+
     return (
+
         <View style={styles.container}>
 
             <ScrollView>
@@ -54,71 +84,50 @@ const ShoppingCart = ({ navigation }) => {
                 </View>
 
 
+                <View style={styles.secondDivTwo}>
+                    <View style={styles.secondDivTwoOne}>
+                        <FlatList
+                            data={cartItems}
+                            keyExtractor={item => item.productId}
+                            renderItem={itemData => (
+                                <CartItem
+                                    title={itemData.item.productTitle}
+                                    amount={itemData.item.sum}
 
+                                    quantity={itemData.item.quantity}
+                                    price={itemData.item.productPrice}
+                                    onRemove={() => {
 
-                <Card>
-                    <CardItem >
-                        <View style={styles.secondDivTwo}>
-                            <View style={styles.secondDivTwoOne}>
-                                <Image
-                                    source={require('./assets/milk.png')}
-                                    style={{ width: 50, height: 60 }}
+                                    }}
                                 />
-                            </View>
+                            )}
+                        />
 
-                            <View style={styles.secondDivTwoTwo}>
-                                <Text>牛奶</Text>
-                                <View style={{
-                                    padding: 12,
-                                    backgroundColor: '#f2f2f2',
-                                    borderRadius: 30,
-                                    alignSelf: 'flex-start',
-                                    width: '95%',
-                                    marginTop: 5,
-                                }} >
-                                    <Text>{'1L'}</Text>
-                                </View>
-                            </View>
-
-                            <View style={styles.secondDivTwoThree}>
-                                <View style={styles.addOrMinusBtn}>
-                                    <Feather name='minus-circle' color='#60c73a' size={26} />
-                                    <Text style={{
-                                        fontSize: 15,
-                                    }}>1</Text>
-                                    <Feather name='plus-circle' color='#60c73a' size={26} />
-                                </View>
-                                <View style={{
-                                    alignSelf: 'flex-end'
-                                }}>
-                                    <Text style={{
-                                        color: 'red',
-                                    }}>$20</Text>
-                                    <TouchableOpacity ><Text>移除</Text></TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
-                    </CardItem>
-                </Card>
-
-                <Container>
-                    <View style={styles.footer}>
-
-                        <View style={styles.footerPrice}><Text>总计 ￥2000 </Text></View>
-                        <View style={styles.btncontainer}>
-                            <TouchableOpacity>
-                                <Text style={styles.text}>
-                                    提交</Text>
-                            </TouchableOpacity>
-                        </View>
                     </View>
-                </Container>
+                </View>
+
+
+
+
+                <View style={styles.footer}>
+
+                    <View style={styles.footerPrice}><Text>总计 ￥2000 </Text></View>
+                    <View style={styles.btncontainer}>
+                        <TouchableOpacity>
+                            <Text style={styles.text}>
+                                提交</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
             </ScrollView>
 
         </View >
 
+
     )
 }
+
 
 
 const styles = StyleSheet.create({
@@ -150,15 +159,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
 
-    secondDivTwo: {
-        flex: 2,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        borderColor: 'white',
-        borderWidth: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-    },
+
 
     secondDivTwoTwo: {
         borderColor: 'white',
@@ -177,12 +178,12 @@ const styles = StyleSheet.create({
     },
 
     footer: {
-        height: 50,
+
         backgroundColor: '#60c73a',
         justifyContent: 'space-between',
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 236
+
     },
 
     btncontainer: {
@@ -203,4 +204,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ShoppingCart;
+
+export default CartScreen;
+
+
+
+
+

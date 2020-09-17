@@ -20,29 +20,26 @@ import { useNavigation, navigation } from '@react-navigation/native';
 
 const FruitsComponent = props => {
     const navigation = useNavigation();
-
     const products = useSelector(state => state.products.availableProducts);
+    const dispatch = useDispatch();
 
     return (
 
         <FlatList
             data={products}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.productId}
             renderItem={itemData => (
                 <ProductItem
                     title={itemData.item.title}
-                    origPrice={itemData.item.origPrice}
+                    price={itemData.item.price}
                     amount={itemData.item.amount}
                     onViewDetail={() => {
-                        navigation.navigate({
-                            name: 'Product Detail',
-                            productID: itemData.item.id,
-                        })
+                        navigation.navigate('Cart Screen')
+                    }}
+                    onAddToCart={() => {
+                        dispatch(cartActions.addToCart(itemData.item));
                     }}
 
-                    onPress={() => {
-                        dispatch(cartActions.addToCart(selectedProduct));
-                    }}
                 />
             )}
 
@@ -53,7 +50,6 @@ const FruitsComponent = props => {
 
 
 };
-
 
 
 
