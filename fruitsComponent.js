@@ -24,7 +24,6 @@ const FruitsComponent = props => {
     const dispatch = useDispatch();
 
     return (
-
         <FlatList
             data={products}
             keyExtractor={item => item.productId}
@@ -34,11 +33,13 @@ const FruitsComponent = props => {
                     price={itemData.item.price}
                     amount={itemData.item.amount}
                     onViewDetail={() => {
-                        navigation.navigate('Cart Screen')
+                        navigation.navigate('Product Detail Screen')
                     }}
                     onAddToCart={() => {
                         dispatch(cartActions.addToCart(itemData.item));
                     }}
+
+
 
                 />
             )}

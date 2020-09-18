@@ -104,7 +104,7 @@ export default class HomeEdited extends React.Component {
 
 
                             <View style={styles.container}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ShoppingCart')}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Cart Screen')}>
                                     <Text style={styles.text}>
                                         前往购物车
                                         </Text>

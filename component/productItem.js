@@ -55,13 +55,13 @@ const ProductItem = props => {
                             <View style={styles.secondDivTwoThree}>
                                 <View style={styles.addOrMinusBtn}>
 
-                                    <TouchableOpacity >
+                                    <TouchableOpacity onPress={props.addToDecrease}>
                                         <Feather name='minus-circle' color='#60c73a' size={26} />
                                     </TouchableOpacity>
                                     <Text style={{
                                         fontSize: 15,
                                     }}>0</Text>
-                                    <TouchableOpacity >
+                                    <TouchableOpacity onPress={props.addToIncrease}>
                                         <Feather name='plus-circle' color='#60c73a' size={26} />
                                     </TouchableOpacity>
                                 </View>

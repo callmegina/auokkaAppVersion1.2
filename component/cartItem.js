@@ -44,11 +44,15 @@ const CartItem = props => {
 
                         <View style={styles.secondDivTwoThree}>
                             <View style={styles.addOrMinusBtn}>
-                                <Feather name='minus-circle' color='#60c73a' size={26} />
+                                <TouchableOpacity onPress={props.onRemove}>
+                                    <Feather name='minus-circle' color='#60c73a' size={26} />
+                                </TouchableOpacity>
                                 <Text style={{
                                     fontSize: 15,
                                 }}>{props.quantity}</Text>
-                                <Feather name='plus-circle' color='#60c73a' size={26} />
+                                <TouchableOpacity onPress={props.onAdd}>
+                                    <Feather name='plus-circle' color='#60c73a' size={26} />
+                                </TouchableOpacity>
                             </View>
                             <View style={{
                                 alignSelf: 'flex-end'
@@ -56,7 +60,8 @@ const CartItem = props => {
                                 <Text style={{
                                     color: 'red',
                                 }}>{props.price}</Text>
-                                <TouchableOpacity ><Text>{props.onRemove}移除</Text></TouchableOpacity>
+                                <TouchableOpacity ><Text>移除</Text>
+                                    <Text>Total: {props.sum}</Text></TouchableOpacity>
 
 
                             </View>

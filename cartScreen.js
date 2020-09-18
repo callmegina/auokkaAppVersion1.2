@@ -33,7 +33,6 @@ const CartScreen = props => {
                 productPrice: state.cart.items[key].productPrice,
                 quantity: state.cart.items[key].quantity,
                 sum: state.cart.items[key].sum,
-
             });
         }
         return transformedCartItems.sort((a, b) =>
@@ -96,9 +95,16 @@ const CartScreen = props => {
 
                                     quantity={itemData.item.quantity}
                                     price={itemData.item.productPrice}
-                                    onRemove={() => {
 
+                                    onRemove={() => {
+                                        dispatch(cartActions.decreaseCartQuantity(itemData.item.productId));
                                     }}
+
+                                    onAdd={() => {
+                                        dispatch(cartActions.increaseCartQuantity(itemData.item.productId));
+                                    }}
+
+
                                 />
                             )}
                         />

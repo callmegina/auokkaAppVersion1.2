@@ -6,7 +6,9 @@ class Product {
         this.type = type;
         this.description = description;
         this.amount = amount;
-        this.price = price
+        this.price = price;
+
+
     }
 }
 

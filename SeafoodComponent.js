@@ -34,8 +34,13 @@ const SeafoodComponent = (props) => {
                     title={itemData.item.title}
                     amount={itemData.item.amount}
                     price={itemData.item.price}
-                    onViewDetail={() =>
-                        navigation.navigate('Cart Screen')}
+                    onViewDetail={() => {
+                        navigation.navigate
+                            ('Product Detail Screen')
+                    }}
+                    onAddToCart={() => {
+                        dispatch(cartActions.addToCart(itemData.item));
+                    }}
                 />
             )} />
     )

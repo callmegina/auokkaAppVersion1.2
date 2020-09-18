@@ -15,7 +15,7 @@ import FruitsComponent from './fruitsComponent';
 import SeafoodComponent from './SeafoodComponent';
 
 import CartScreen from './cartScreen';
-
+import ProductDetailScreen from './productDetailScreen';
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
@@ -37,6 +37,7 @@ const MainStackNavigator = () => {
             <Stack.Screen name="Home" component={HomeEdited} />
             <Stack.Screen name="Fruit" component={FruitsComponent} />
             <Stack.Screen name="Cart Screen" component={CartScreen} />
+            <Stack.Screen name="Product Detail Screen" component={ProductDetailScreen} />
 
             <Stack.Screen name="Seafood" component={SeafoodComponent} />
 
