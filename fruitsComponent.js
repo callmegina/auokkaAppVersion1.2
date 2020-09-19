@@ -34,6 +34,7 @@ const FruitsComponent = props => {
                     amount={itemData.item.amount}
                     onViewDetail={() => {
                         navigation.navigate('Product Detail Screen')
+
                     }}
                     onAddToCart={() => {
                         dispatch(cartActions.addToCart(itemData.item));
