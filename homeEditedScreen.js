@@ -18,8 +18,6 @@ import DriedFoodComponent from './driedFoodComponentScreen';
 
 
 
-
-
 export default class HomeEdited extends React.Component {
 
     constructor(props) {

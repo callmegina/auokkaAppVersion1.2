@@ -4,7 +4,7 @@ import { View, Button, Text, StyleSheet } from "react-native";
 const TabOne = ({ navigation }) => {
     return (
         <View style={styles.center}>
-
+            <Text>Hi</Text>
 
         </View>
     );

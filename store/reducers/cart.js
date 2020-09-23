@@ -3,6 +3,7 @@ import {
     DECREASE_CART_QUANTITY
 } from '../actions/cart';
 import CartItem from '../../models/cart-item';
+import { useState } from 'react';
 
 
 const initialState = {
@@ -18,22 +19,17 @@ export default (state = initialState, action) => {
             const addedProduct = action.product;
             const prodPrice = addedProduct.price;
             const prodTitle = addedProduct.title;
-            const prodImage = addedProduct.imageUrl;
-            const prodAmount = addedProduct.amount;
-
             let updatedOrNewCartItem;
             if (state.items[addedProduct.id]) {
                 updatedOrNewCartItem = new CartItem(
                     state.items[addedProduct.id].quantity + 1,
                     prodPrice,
                     prodTitle,
-                    prodAmount,
-                    prodImage,
-                    state.items[addedProduct.id].sum + prodPrice
+                    state.items[addedProduct.id].sum + prodPrice,
                 );
 
             } else {
-                updatedOrNewCartItem = new CartItem(1, prodPrice, prodTitle, prodAmount, prodImage)
+                updatedOrNewCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice)
             } return {
 
                 ...state,
@@ -42,19 +38,22 @@ export default (state = initialState, action) => {
 
             };
 
+
+
+
         case DECREASE_CART_QUANTITY:
 
             const selectedCartItem = state.items[action.pid];
-            const currentQty = selectedCartItem.quantity;
+            const currentQty = selectedCartItem.productQuantity;
             let updatedCartItems;
 
             if (currentQty > 1) {
                 // need to reduce it, not erase it
                 const updatedCartItem = new CartItem(
-                    selectedCartItem.quantity - 1,
+                    selectedCartItem.productQuantity - 1,
                     selectedCartItem.productPrice,
                     selectedCartItem.productTitle,
-                    selectedCartItem.sum - selectedCartItem.productPrice
+                    selectedCartItem.productSum - selectedCartItem.productPrice
                 );
                 updatedCartItems = { ...state.items, [action.pid]: updatedCartItem };
             } else {
@@ -71,7 +70,7 @@ export default (state = initialState, action) => {
 
         case INCREASE_CART_QUANTITY:
             const selectedItem = state.items[action.pid];
-            const cartQuantity = selectedItem.quantity;
+            const cartQuantity = selectedItem.productQuantity;
             const updatedCartItem = new CartItem(
                 cartQuantity + 1,
             );
@@ -79,10 +78,10 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 items: updatedCartItems,
-
+                totalAmount: state.totalAmount - selectedItem.productPrice
             };
 
     }
 
-    return state
+    return state;
 }

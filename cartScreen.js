@@ -34,8 +34,10 @@ const CartScreen = props => {
                 productTitle: state.cart.items[key].productTitle,
                 productPrice: state.cart.items[key].productPrice,
                 productQuantity: state.cart.items[key].productQuantity,
-                productAmount: state.cart.items[key].productAmount,
-                productImage: state.cart.items[key].productImage,
+                productSum: state.cart.items[key].productSum,
+                totalAmount: state.cart.items[key].productAmount,
+
+
             });
         }
         return transformedCartItems.sort((a, b) =>
@@ -43,9 +45,6 @@ const CartScreen = props => {
         );
     });
     const dispatch = useDispatch();
-
-
-
 
     return (
 
@@ -96,12 +95,13 @@ const CartScreen = props => {
                             keyExtractor={item => item.productId}
                             renderItem={itemData => (
                                 <CartItem
-
                                     productTitle={itemData.item.productTitle}
                                     productQuantity={itemData.item.productQuantity}
-                                    productAmount={itemData.item.productAmount}
+                                    totalAmount={itemData.item.productAmount}
                                     productPrice={itemData.item.productPrice}
-                                    productImage={itemData.item.productImage}
+                                    productSum={itemData.item.productSum}
+
+
 
 
                                     onRemove={() => {

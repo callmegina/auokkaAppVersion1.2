@@ -22,9 +22,12 @@ const CartItem = props => {
                 <CardItem >
                     <View style={styles.secondDivTwo}>
                         <View style={styles.secondDivTwoOne}>
-                            <Image
+                            <Image style={styles.image}
                                 source={{ uri: props.productImage }}
-                                style={{ width: '50%', height: '50%' }}
+                                style={{
+                                    width: 50,
+                                    height: 50
+                                }}
                             />
 
                         </View>
@@ -156,6 +159,12 @@ const styles = StyleSheet.create({
         marginRight: 10,
         borderRadius: 16
     }
+    ,
+    image: {
+        width: '30%',
+        height: '40%'
+    }
+
 });
 
 export default CartItem;

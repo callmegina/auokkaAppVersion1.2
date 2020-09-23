@@ -1,6 +1,5 @@
 import PRODUCTS from '../../dummy_data_product';
 
-
 import {
     INCREASE_CART_QUANTITY,
     DECREASE_CART_QUANTITY
@@ -45,22 +44,23 @@ export default (state = initialState, action) => {
             };
 
 
-        /*         case INCREASE_CART_QUANTITY:
-                    const selectedProductItemTwo = state.items[action.pid];
-                    const productQtyTwo = selectedProductItemTwo.quantity;
-                    const updatedProductItemsTwo = new ProductItem(
-                        productQtyTwo + 1,
-                    );
-                    updatedProductItemsTwo = { ...state.items, [action.pid]: updatedProductItemsTwo }
-                    return {
-                        ...state,
-                        items: updatedProductItemsTwo,
-        
-                    };
-        
-            } */
+        case INCREASE_CART_QUANTITY:
+            const selectedProductItemTwo = state.items[action.pid];
+            const productQtyTwo = selectedProductItemTwo.quantity;
+            const updatedProductItemsTwo = new ProductItem(
+                productQtyTwo + 1,
+            );
+            updatedProductItemsTwo = { ...state.items, [action.pid]: updatedProductItemsTwo }
+            return {
+                ...state,
+                items: updatedProductItemsTwo,
 
+            };
 
     }
-    return state
+
+    return state;
 }
+
+
+

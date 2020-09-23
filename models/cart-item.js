@@ -6,7 +6,7 @@ class CartItem {
         this.productTitle = productTitle;
         this.productSum = productSum;
         this.productAmount = productAmount;
-        this.productImage = productImage;
+
     }
 }
 

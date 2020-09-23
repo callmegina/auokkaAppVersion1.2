@@ -4,7 +4,7 @@ import {
     TouchableOpacity, Image, FlatList
 } from "react-native";
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, useState } from 'react-redux';
 import ProductItem from './component/productItem';
 import * as cartActions from './store/actions/cart';
 
@@ -26,6 +26,29 @@ const FruitsComponent = props => {
     const filteredProducts = products.filter(item => item.type === '水果');
 
 
+    //const initialState = { quantity: 0 };
+    // const productTotalAmount = useSelector(state => state.filteredProducts.quantity);
+    const productItems = useSelector(state => {
+        const transformedProductItems = [];
+        for (const key in state.products.items) {
+            transformedProductItems.push({
+                productId: key,
+                productTitle: state.products.items[key].title,
+                productPrice: state.products.items[key].price,
+                // productQuantity: state.products.items[key].quantity,
+                productAmount: state.products.items[key].amount,
+                productImage: state.products.items[key].imageUrl,
+                productSum: state.products.items[key].sum
+            });
+        }
+        return transformedProductItems.sort((a, b) =>
+            a.productId > b.productId ? 1 : -1
+        );
+    });
+
+
+
+
     const dispatch = useDispatch();
 
     const editProductHander = (id) => {
@@ -41,7 +64,7 @@ const FruitsComponent = props => {
                     title={itemData.item.title}
                     price={itemData.item.price}
                     image={itemData.item.imageUrl}
-                    quantity={itemData.item.quantity}
+                    // quantity={itemData.item.quantity}
                     amount={itemData.item.amount}
                     onViewDetail={() => {
                         editProductHander(itemData.item.id);
