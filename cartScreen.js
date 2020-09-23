@@ -18,6 +18,8 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation, navigation } from '@react-navigation/native';
 import Product from "./models/product";
 import CartItem from './component/cartItem';
+
+
 import * as cartActions from './store/actions/cart';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -31,8 +33,9 @@ const CartScreen = props => {
                 productId: key,
                 productTitle: state.cart.items[key].productTitle,
                 productPrice: state.cart.items[key].productPrice,
-                quantity: state.cart.items[key].quantity,
-                sum: state.cart.items[key].sum,
+                productQuantity: state.cart.items[key].productQuantity,
+                productAmount: state.cart.items[key].productAmount,
+                productImage: state.cart.items[key].productImage,
             });
         }
         return transformedCartItems.sort((a, b) =>
@@ -40,6 +43,9 @@ const CartScreen = props => {
         );
     });
     const dispatch = useDispatch();
+
+
+
 
     return (
 
@@ -90,11 +96,13 @@ const CartScreen = props => {
                             keyExtractor={item => item.productId}
                             renderItem={itemData => (
                                 <CartItem
-                                    title={itemData.item.productTitle}
-                                    amount={itemData.item.sum}
 
-                                    quantity={itemData.item.quantity}
-                                    price={itemData.item.productPrice}
+                                    productTitle={itemData.item.productTitle}
+                                    productQuantity={itemData.item.productQuantity}
+                                    productAmount={itemData.item.productAmount}
+                                    productPrice={itemData.item.productPrice}
+                                    productImage={itemData.item.productImage}
+
 
                                     onRemove={() => {
                                         dispatch(cartActions.decreaseCartQuantity(itemData.item.productId));

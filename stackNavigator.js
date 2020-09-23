@@ -11,11 +11,16 @@ import ShipAddressScreen from './shipAddressScreen';
 
 import HomeEdited from './homeEditedScreen';
 
-import FruitsComponent from './fruitsComponent';
-import SeafoodComponent from './SeafoodComponent';
+import FruitsComponent from './fruitsComponentScreen';
+import SeafoodComponent from './seaFoodComponentScreen';
+import DriedFoodComponent from './driedFoodComponentScreen';
 
 import CartScreen from './cartScreen';
 import ProductDetailScreen from './productDetailScreen';
+import ProductDetailFinal from './productDetailFinal';
+
+
+
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
@@ -36,6 +41,7 @@ const MainStackNavigator = () => {
         <Stack.Navigator screenOptions={screenOptionStyle}>
             <Stack.Screen name="Home" component={HomeEdited} />
             <Stack.Screen name="Fruit" component={FruitsComponent} />
+            <Stack.Screen name="Detail Final" component={ProductDetailFinal} />
             <Stack.Screen name="Cart Screen" component={CartScreen} />
             <Stack.Screen name="Product Detail Screen" component={ProductDetailScreen} />
 

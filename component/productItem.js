@@ -23,10 +23,10 @@ const ProductItem = props => {
                         <View style={styles.secondDivTwo}>
                             <View style={styles.secondDivTwoOne}>
 
-                                <Image
-                                    source={require('../assets/strawberry.png')}
+                                <Image style={styles.image}
+                                    source={{ uri: props.image }}
                                     style={{
-                                        width: 55,
+                                        width: 60,
                                         height: 65
                                     }}
                                 />
@@ -55,13 +55,13 @@ const ProductItem = props => {
                             <View style={styles.secondDivTwoThree}>
                                 <View style={styles.addOrMinusBtn}>
 
-                                    <TouchableOpacity onPress={props.addToDecrease}>
+                                    <TouchableOpacity onPress={props.onRemove}>
                                         <Feather name='minus-circle' color='#60c73a' size={26} />
                                     </TouchableOpacity>
                                     <Text style={{
                                         fontSize: 15,
-                                    }}>0</Text>
-                                    <TouchableOpacity onPress={props.addToIncrease}>
+                                    }}>{props.quantity}</Text>
+                                    <TouchableOpacity onPress={props.onAdd}>
                                         <Feather name='plus-circle' color='#60c73a' size={26} />
                                     </TouchableOpacity>
                                 </View>
@@ -146,6 +146,10 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         marginRight: 10,
         borderRadius: 16
+    },
+    image: {
+        width: '30%',
+        height: '40%'
     }
 
 });

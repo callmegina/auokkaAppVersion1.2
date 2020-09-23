@@ -11,8 +11,11 @@ import {
 } from 'native-base';
 
 import { Feather } from '@expo/vector-icons';
-import FruitsComponent from "./fruitsComponent";
-import SeafoodComponent from './SeafoodComponent';
+
+import FruitsComponent from './fruitsComponentScreen';
+import SeafoodComponent from './seaFoodComponentScreen';
+import DriedFoodComponent from './driedFoodComponentScreen';
+
 
 
 
@@ -60,9 +63,9 @@ export default class HomeEdited extends React.Component {
         console.log(itemSelected)
         switch (itemSelected) {
             case "水果": return <FruitsComponent />;
-            case "海鲜": return <SeafoodComponent />;
+            case "干货": return <DriedFoodComponent />;
             case "乳制品": return <SeafoodComponent />;
-            default: return <Text>default page</Text>
+            default: return <FruitsComponent />;
         }
     }
 

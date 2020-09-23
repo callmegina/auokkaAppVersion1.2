@@ -23,13 +23,14 @@ const CartItem = props => {
                     <View style={styles.secondDivTwo}>
                         <View style={styles.secondDivTwoOne}>
                             <Image
-                                source={require('../assets/milk.png')}
-                                style={{ width: 50, height: 60 }}
+                                source={{ uri: props.productImage }}
+                                style={{ width: '50%', height: '50%' }}
                             />
+
                         </View>
 
                         <View style={styles.secondDivTwoTwo}>
-                            <Text>{props.title}</Text>
+                            <Text>{props.productTitle}</Text>
                             <View style={{
                                 padding: 12,
                                 backgroundColor: '#f2f2f2',
@@ -38,7 +39,7 @@ const CartItem = props => {
                                 width: '95%',
                                 marginTop: 5,
                             }} >
-                                <Text>{props.amount}</Text>
+                                <Text>{props.productAmount}</Text>
                             </View>
                         </View>
 
@@ -49,7 +50,7 @@ const CartItem = props => {
                                 </TouchableOpacity>
                                 <Text style={{
                                     fontSize: 15,
-                                }}>{props.quantity}</Text>
+                                }}>{props.productQuantity}</Text>
                                 <TouchableOpacity onPress={props.onAdd}>
                                     <Feather name='plus-circle' color='#60c73a' size={26} />
                                 </TouchableOpacity>
@@ -59,10 +60,9 @@ const CartItem = props => {
                             }}>
                                 <Text style={{
                                     color: 'red',
-                                }}>{props.price}</Text>
+                                }}>${props.productPrice}</Text>
                                 <TouchableOpacity ><Text>移除</Text>
-                                    <Text>Total: {props.sum}</Text></TouchableOpacity>
-
+                                    <Text>Total: {props.productSum}</Text></TouchableOpacity>
 
                             </View>
                         </View>
