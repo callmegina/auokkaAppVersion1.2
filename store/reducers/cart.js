@@ -10,6 +10,8 @@ const initialState = {
     items: {},
     totalAmount: 0,
 
+
+
 }
 
 export default (state = initialState, action) => {
@@ -17,54 +19,63 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_TO_CART:
             const addedProduct = action.product;
-            const prodPrice = addedProduct.price;
+            const prodPrice = parseInt(addedProduct.price);
             const prodTitle = addedProduct.title;
+            const productNetWeight = addedProduct.netWeight;
+            const productQuantity = addedProduct.productQuantity;
+            const productSum = addedProduct.productSum;
+            const productImage = addedProduct.imageUrl;
+
+
             let updatedOrNewCartItem;
             if (state.items[addedProduct.id]) {
                 updatedOrNewCartItem = new CartItem(
-                    state.items[addedProduct.id].quantity + 1,
+                    state.items[addedProduct.id].productQuantity + 1,
                     prodPrice,
                     prodTitle,
-                    state.items[addedProduct.id].sum + prodPrice,
+                    state.items[addedProduct.id].productSum + prodPrice,
+                    productNetWeight,
+                    productImage
                 );
 
             } else {
-                updatedOrNewCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice)
+                updatedOrNewCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice, productNetWeight, productImage)
             } return {
 
                 ...state,
                 items: { ...state.items, [addedProduct.id]: updatedOrNewCartItem },
-                totalAmount: state.totalAmount + prodPrice
-
+                // productQuantity: state.productQuantity,
+                //productSum: state.productSum + prodPrice
             };
-
 
 
 
         case DECREASE_CART_QUANTITY:
 
-            const selectedCartItem = state.items[action.pid];
-            const currentQty = selectedCartItem.productQuantity;
-            let updatedCartItems;
-
-            if (currentQty > 1) {
-                // need to reduce it, not erase it
-                const updatedCartItem = new CartItem(
-                    selectedCartItem.productQuantity - 1,
-                    selectedCartItem.productPrice,
-                    selectedCartItem.productTitle,
-                    selectedCartItem.productSum - selectedCartItem.productPrice
+            const addedItem = action.product;
+            const currentQuantity = addedItem.productQuantity;
+            let updatedItem;
+            if (currentQuantity >= 1) {
+                const updatedItem = new CartItem(
+                    addedItem.productQuantity - 1,
+                    addedItem.prodTitle,
+                    addedItem.productPrice,
+                    addedItem.productSum - addedItem.productPrice
                 );
-                updatedCartItems = { ...state.items, [action.pid]: updatedCartItem };
+                updatedItem = { ...state.items, [action.pid]: updatedItem };
             } else {
-                updatedCartItems = { ...state.items };
-                delete updatedCartItems[action.pid];
+                updatedItem = { ...state.items };
+                delete updatedItem[action.pid];
             }
             return {
                 ...state,
-                items: updatedCartItems,
-                totalAmount: state.totalAmount - selectedCartItem.productPrice
+                items: updatedItem,
+                totalAmount: state.totalAmount - updatedItem.productPrice
             };
+
+
+
+
 
 
 

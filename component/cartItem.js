@@ -14,10 +14,8 @@ import { Feather } from '@expo/vector-icons';
 
 
 const CartItem = props => {
-
     return (
         <View style={styles.container}>
-
             <Card>
                 <CardItem >
                     <View style={styles.secondDivTwo}>
@@ -42,7 +40,7 @@ const CartItem = props => {
                                 width: '95%',
                                 marginTop: 5,
                             }} >
-                                <Text>{props.productAmount}</Text>
+                                <Text>{props.productNetWeight}</Text>
                             </View>
                         </View>
 
@@ -63,9 +61,9 @@ const CartItem = props => {
                             }}>
                                 <Text style={{
                                     color: 'red',
-                                }}>${props.productPrice}</Text>
-                                <TouchableOpacity ><Text>移除</Text>
-                                    <Text>Total: {props.productSum}</Text></TouchableOpacity>
+                                }}>单价：￥{props.productPrice}</Text>
+                                <TouchableOpacity >
+                                    <Text>总共：￥{props.productSum}</Text></TouchableOpacity>
 
                             </View>
                         </View>

@@ -31,11 +31,12 @@ const CartScreen = props => {
         for (const key in state.cart.items) {
             transformedCartItems.push({
                 productId: key,
-                productTitle: state.cart.items[key].productTitle,
-                productPrice: state.cart.items[key].productPrice,
                 productQuantity: state.cart.items[key].productQuantity,
+                productPrice: state.cart.items[key].productPrice,
+                productTitle: state.cart.items[key].productTitle,
+                productNetWeight: state.cart.items[key].productNetWeight,
                 productSum: state.cart.items[key].productSum,
-                totalAmount: state.cart.items[key].productAmount,
+                productImage: state.cart.items[key].productImage
 
 
             });
@@ -97,12 +98,10 @@ const CartScreen = props => {
                                 <CartItem
                                     productTitle={itemData.item.productTitle}
                                     productQuantity={itemData.item.productQuantity}
-                                    totalAmount={itemData.item.productAmount}
                                     productPrice={itemData.item.productPrice}
                                     productSum={itemData.item.productSum}
-
-
-
+                                    productNetWeight={itemData.item.productNetWeight}
+                                    productImage={itemData.item.productImage}
 
                                     onRemove={() => {
                                         dispatch(cartActions.decreaseCartQuantity(itemData.item.productId));

@@ -46,7 +46,7 @@ const ProductItem = props => {
                                     marginTop: 5,
                                 }} >
 
-                                    <Text>{props.amount}</Text>
+                                    <Text>{props.netWeight}</Text>
                                 </View>
 
                             </View>
