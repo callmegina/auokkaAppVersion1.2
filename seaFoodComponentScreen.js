@@ -4,9 +4,13 @@ import {
     TouchableOpacity, Image, FlatList
 } from "react-native";
 
-import { useSelector, useDispatch } from 'react-redux';
+
+
+
+import { useSelector, useDispatch, useState } from 'react-redux';
 import ProductItem from './component/productItem';
-//import * as cartActions from './store/actions/cart';
+import * as cartActions from './store/actions/cart';
+
 import {
     Container, Header, CardItem, List,
     ListItem, Icon, Content, Footer,
@@ -25,6 +29,25 @@ const SeafoodComponent = (props) => {
     const filteredProducts = products.filter(item => item.type === '乳制品');
     const dispatch = useDispatch();
 
+
+    const productItems = useSelector(state => {
+        const transformedProductItems = [];
+        for (const key in state.products.items) {
+            transformedProductItems.push({
+                productId: key,
+                productTitle: state.filteredProducts.items[key].title,
+                productPrice: state.filteredProducts.items[key].price,
+                productAmount: state.filteredProducts.items[key].amount,
+                productImage: state.filteredProducts.items[key].imageUrl,
+                productSum: state.filteredProducts.items[key].sum
+            });
+        }
+        return transformedProductItems.sort((a, b) =>
+            a.productId > b.productId ? 1 : -1
+        );
+    });
+
+
     const editProductHander = (id) => {
         navigation.navigate('Detail Final', { productId: id });
     }
@@ -39,8 +62,8 @@ const SeafoodComponent = (props) => {
                     title={itemData.item.title}
                     price={itemData.item.price}
                     image={itemData.item.imageUrl}
-                    quantity={itemData.item.quantity}
-                    amount={itemData.item.amount}
+
+                    netWeight={itemData.item.netWeight}
                     onViewDetail={() => {
                         editProductHander(itemData.item.id);
                     }}
@@ -59,7 +82,6 @@ const SeafoodComponent = (props) => {
             )}
         />
     )
-
 }
 
 

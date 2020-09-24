@@ -35,8 +35,7 @@ const Profile = ({ navigation }) => {
                 <ListItem>
 
                     <Left>
-                        <TouchableOpacity onPress={() => navigation.navigate('Order Screen',
-                            { screen: 'OrderScreen' })}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Order Screen')}>
                             <Icon name="paper" size={24} color='grey'
                             />
                         </TouchableOpacity>
@@ -57,8 +56,7 @@ const Profile = ({ navigation }) => {
 
                 <ListItem>
                     <Left>
-                        <TouchableOpacity onPress={() => navigation.navigate('Add Shipping Address',
-                            { screen: 'Add Shipping Address' })}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Add Shipping Address')}>
                             <Icon name="mail" size={24} />
                         </TouchableOpacity>
                         <Text style={{
@@ -78,6 +76,8 @@ const Profile = ({ navigation }) => {
                         color="#60c73a"
                         alignItems='center'
                     />
+
+
                 </View>
             </View>
 

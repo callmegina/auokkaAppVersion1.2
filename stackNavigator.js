@@ -19,7 +19,7 @@ import CartScreen from './cartScreen';
 import ProductDetailScreen from './productDetailScreen';
 import ProductDetailFinal from './productDetailFinal';
 
-
+import AuthScreen from './AuthScreen';
 
 const Stack = createStackNavigator();
 
@@ -44,7 +44,6 @@ const MainStackNavigator = () => {
             <Stack.Screen name="Detail Final" component={ProductDetailFinal} />
             <Stack.Screen name="Cart Screen" component={CartScreen} />
             <Stack.Screen name="Product Detail Screen" component={ProductDetailScreen} />
-
             <Stack.Screen name="Seafood" component={SeafoodComponent} />
 
         </Stack.Navigator>
@@ -65,7 +64,9 @@ const CartStackNavigator = () => {
 const ProfileStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
+
             <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Authentification Screen" component={AuthScreen} />
             <Stack.Screen name="ShipAddress Screen" component={ShipAddressScreen} />
             <Stack.Screen name="Add Shipping Address" component={AddShipAddress} />
             <Stack.Screen name="Order Screen" component={OrderScreen} />

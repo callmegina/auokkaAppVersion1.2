@@ -9,7 +9,7 @@ const AddShipAddress = ({ navigation }) => {
     return (
         <View style={styles.mainContainer}>
             <View style={styles.container}>
-                <TouchableOpacity onPress={() => navigation.navigate('ShipAddressScreen'
+                <TouchableOpacity onPress={() => navigation.navigate('ShipAddress Screen'
                 )}>
                     <Text style={styles.text}>
                         添加收件地址

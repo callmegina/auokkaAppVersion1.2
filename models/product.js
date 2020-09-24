@@ -7,8 +7,6 @@ class Product {
         this.description = description;
         this.netWeight = netWeight;
         this.price = price;
-
-
     }
 }
 

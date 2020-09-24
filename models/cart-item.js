@@ -8,7 +8,6 @@ class CartItem {
         this.productNetWeight = productNetWeight;
         this.productImage = productImage;
 
-
     }
 }
 

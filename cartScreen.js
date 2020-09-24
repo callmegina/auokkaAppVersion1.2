@@ -18,8 +18,6 @@ import { Feather } from '@expo/vector-icons';
 import { useNavigation, navigation } from '@react-navigation/native';
 import Product from "./models/product";
 import CartItem from './component/cartItem';
-
-
 import * as cartActions from './store/actions/cart';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -31,24 +29,24 @@ const CartScreen = props => {
         for (const key in state.cart.items) {
             transformedCartItems.push({
                 productId: key,
-                productQuantity: state.cart.items[key].productQuantity,
-                productPrice: state.cart.items[key].productPrice,
                 productTitle: state.cart.items[key].productTitle,
+                productImage: state.cart.items[key].productImage,
+                productQuantity: state.cart.items[key].productQuantity,
                 productNetWeight: state.cart.items[key].productNetWeight,
+                productPrice: state.cart.items[key].productPrice,
                 productSum: state.cart.items[key].productSum,
-                productImage: state.cart.items[key].productImage
-
             });
         }
+
         return transformedCartItems.sort((a, b) =>
             a.productId > b.productId ? 1 : -1
         );
     });
 
+
+    //not working for amount total calculation 
     let cartTotal;
-
     const totalForEachItem = useSelector(state => {
-
         for (const key in state.cart.items) {
             cartTotal += state.cart.items[key].productSum;
         }
@@ -72,8 +70,8 @@ const CartScreen = props => {
                         <Text style={{ fontWeight: "bold" }} >收件地址</Text>
                     </View>
                     <TouchableOpacity style={styles.fristSectionTwo}
-                        onPress={() => navigation.navigate('AddShipAddress',
-                            { screen: 'AddShipAddress' })}
+                        onPress={() => props.navigation.navigate('Add Shipping Address'
+                        )}
                         style={styles.btnShipAddress}>
                         <Text style={{ paddingLeft: 9 }} >点击选择收件地址</Text>
                         <Icon name="arrow-forward"

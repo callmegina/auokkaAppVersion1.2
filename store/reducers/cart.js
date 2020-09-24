@@ -1,21 +1,20 @@
 import {
     ADD_TO_CART, INCREASE_CART_QUANTITY,
-    DECREASE_CART_QUANTITY
+    DECREASE_CART_QUANTITY,
+
 } from '../actions/cart';
+
 import CartItem from '../../models/cart-item';
 import { useState } from 'react';
-
 
 const initialState = {
     items: {},
     totalAmount: 0,
-
 }
 
 export default (state = initialState, action) => {
 
     switch (action.type) {
-
 
         case ADD_TO_CART:
             const addedProduct = action.product;
@@ -47,6 +46,7 @@ export default (state = initialState, action) => {
             };
 
 
+        //cart increase 
         case DECREASE_CART_QUANTITY:
             const decreaseItem = state.items[action.pid];
             let ItemPrice
@@ -72,7 +72,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 items: updatedDecreaseItem,
-                totalAmount: state.totalAmount - updatedIncreaseItem.productTotal
+                //  totalAmount: state.totalAmount - updatedIncreaseItem.productTotal
             }
 
 
@@ -94,7 +94,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 items: updatedIncreaseItem,
-                totalAmount: state.totalAmount + updatedIncreaseItem.productTotal
+                // totalAmount: state.totalAmount + updatedIncreaseItem.productTotal
             }
 
     }

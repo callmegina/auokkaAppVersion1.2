@@ -54,13 +54,16 @@ const ProductItem = props => {
                                 <View style={styles.addOrMinusBtn}>
 
                                     <TouchableOpacity onPress={props.onRemove}>
-                                        <Feather name='minus-circle' color='#60c73a' size={26} />
+                                        <Feather name='minus-circle' color='#60c73a' size={22} />
                                     </TouchableOpacity>
                                     <Text style={{
                                         fontSize: 15,
-                                    }}>{props.quantity}</Text>
+                                        paddingLeft: 5,
+                                        paddingRight: 5
+
+                                    }}>  quantity </Text>
                                     <TouchableOpacity onPress={props.onAdd}>
-                                        <Feather name='plus-circle' color='#60c73a' size={26} />
+                                        <Feather name='plus-circle' color='#60c73a' size={22} />
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{
@@ -105,13 +108,13 @@ const styles = StyleSheet.create({
 
     secondDivTwoTwo: {
         borderColor: 'white',
-        flex: 12,
+        flex: 11,
         paddingLeft: 10,
     },
 
     secondDivTwoThree: {
         borderColor: 'white',
-        flex: 7,
+        flex: 8,
     },
 
     addOrMinusBtn: {
@@ -153,5 +156,3 @@ const styles = StyleSheet.create({
 });
 
 export default ProductItem;
-
-

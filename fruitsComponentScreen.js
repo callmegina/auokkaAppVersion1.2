@@ -25,8 +25,6 @@ const FruitsComponent = props => {
 
     const filteredProducts = products.filter(item => item.type === '水果');
 
-
-
     const productItems = useSelector(state => {
         const transformedProductItems = [];
         for (const key in state.products.items) {
@@ -62,8 +60,8 @@ const FruitsComponent = props => {
                     title={itemData.item.title}
                     price={itemData.item.price}
                     image={itemData.item.imageUrl}
-                    // quantity={itemData.item.quantity}
-                    amount={itemData.item.amount}
+
+                    netWeight={itemData.item.netWeight}
                     onViewDetail={() => {
                         editProductHander(itemData.item.id);
                     }}
@@ -90,9 +88,3 @@ const FruitsComponent = props => {
 
 
 export default FruitsComponent;
-
-
-
-
-
-

@@ -3,10 +3,11 @@ import {
     View, Button, Text, StyleSheet,
     TouchableOpacity, Image, FlatList
 } from "react-native";
-
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, useState } from 'react-redux';
 import ProductItem from './component/productItem';
-//import * as cartActions from './store/actions/cart';
+import * as cartActions from './store/actions/cart';
+
+
 import {
     Container, Header, CardItem, List,
     ListItem, Icon, Content, Footer,
@@ -39,8 +40,8 @@ const DriedFoodComponent = (props) => {
                     title={itemData.item.title}
                     price={itemData.item.price}
                     image={itemData.item.imageUrl}
-                    quantity={itemData.item.quantity}
-                    amount={itemData.item.amount}
+
+                    netWeight={itemData.item.netWeight}
                     onViewDetail={() => {
                         editProductHander(itemData.item.id);
                     }}
