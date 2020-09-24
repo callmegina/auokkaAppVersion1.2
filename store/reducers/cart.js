@@ -10,13 +10,13 @@ const initialState = {
     items: {},
     totalAmount: 0,
 
-
-
 }
 
 export default (state = initialState, action) => {
 
     switch (action.type) {
+
+
         case ADD_TO_CART:
             const addedProduct = action.product;
             const prodPrice = parseInt(addedProduct.price);
@@ -25,7 +25,6 @@ export default (state = initialState, action) => {
             const productQuantity = addedProduct.productQuantity;
             const productSum = addedProduct.productSum;
             const productImage = addedProduct.imageUrl;
-
 
             let updatedOrNewCartItem;
             if (state.items[addedProduct.id]) {
@@ -44,53 +43,59 @@ export default (state = initialState, action) => {
 
                 ...state,
                 items: { ...state.items, [addedProduct.id]: updatedOrNewCartItem },
-                // productQuantity: state.productQuantity,
-                //productSum: state.productSum + prodPrice
-            };
 
+            };
 
 
         case DECREASE_CART_QUANTITY:
+            const decreaseItem = state.items[action.pid];
+            let ItemPrice
+            let ItemTotal
+            let updatedDecreaseItem;
 
-            const addedItem = action.product;
-            const currentQuantity = addedItem.productQuantity;
-            let updatedItem;
-            if (currentQuantity >= 1) {
-                const updatedItem = new CartItem(
-                    addedItem.productQuantity - 1,
-                    addedItem.prodTitle,
-                    addedItem.productPrice,
-                    addedItem.productSum - addedItem.productPrice
+            if (decreaseItem.productQuantity >= 1) {
+
+                updatedDecreaseItem = new CartItem(
+                    decreaseItem.productQuantity - 1,
+                    ItemPrice = parseInt(decreaseItem.productPrice),
+                    decreaseItem.productTitle,
+                    ItemTotal = (ItemPrice * (decreaseItem.productQuantity - 1)),
+                    decreaseItem.productNetWeight,
+                    decreaseItem.productImage,
                 );
-                updatedItem = { ...state.items, [action.pid]: updatedItem };
-            } else {
-                updatedItem = { ...state.items };
-                delete updatedItem[action.pid];
+                updatedDecreaseItem = { ...state.items, [action.pid]: updatedDecreaseItem };
+            }
+            else {
+                updatedDecreaseItem = { ...state.items };
+                delete updatedDecreaseItem[action.pid];
             }
             return {
                 ...state,
-                items: updatedItem,
-                totalAmount: state.totalAmount - updatedItem.productPrice
-            };
-
-
-
-
-
+                items: updatedDecreaseItem,
+                totalAmount: state.totalAmount - updatedIncreaseItem.productTotal
+            }
 
 
         case INCREASE_CART_QUANTITY:
-            const selectedItem = state.items[action.pid];
-            const cartQuantity = selectedItem.productQuantity;
-            const updatedCartItem = new CartItem(
-                cartQuantity + 1,
+            const increaseItem = state.items[action.pid];
+            let productPrice
+            let productTotal
+            let updatedIncreaseItem;
+
+            updatedIncreaseItem = new CartItem(
+                increaseItem.productQuantity + 1,
+                productPrice = parseInt(increaseItem.productPrice),
+                increaseItem.productTitle,
+                productTotal = (productPrice * (increaseItem.productQuantity + 1)),
+                increaseItem.productNetWeight,
+                increaseItem.productImage,
             );
-            updatedCartItems = { ...state.items, [action.pid]: updatedCartItem }
+            updatedIncreaseItem = { ...state.items, [action.pid]: updatedIncreaseItem };
             return {
                 ...state,
-                items: updatedCartItems,
-                totalAmount: state.totalAmount - selectedItem.productPrice
-            };
+                items: updatedIncreaseItem,
+                totalAmount: state.totalAmount + updatedIncreaseItem.productTotal
+            }
 
     }
 

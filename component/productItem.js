@@ -48,9 +48,7 @@ const ProductItem = props => {
 
                                     <Text>{props.netWeight}</Text>
                                 </View>
-
                             </View>
-
 
                             <View style={styles.secondDivTwoThree}>
                                 <View style={styles.addOrMinusBtn}>

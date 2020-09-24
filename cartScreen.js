@@ -38,13 +38,28 @@ const CartScreen = props => {
                 productSum: state.cart.items[key].productSum,
                 productImage: state.cart.items[key].productImage
 
-
             });
         }
         return transformedCartItems.sort((a, b) =>
             a.productId > b.productId ? 1 : -1
         );
     });
+
+    let cartTotal;
+
+    const totalForEachItem = useSelector(state => {
+
+        for (const key in state.cart.items) {
+            cartTotal += state.cart.items[key].productSum;
+        }
+        return cartTotal;
+    })
+
+
+
+
+
+
     const dispatch = useDispatch();
 
     return (
@@ -124,7 +139,7 @@ const CartScreen = props => {
 
                 <View style={styles.footer}>
 
-                    <View style={styles.footerPrice}><Text>总计 ￥2000 </Text></View>
+                    <View style={styles.footerPrice}><Text>$ {cartTotalAmount} </Text></View>
                     <View style={styles.btncontainer}>
                         <TouchableOpacity>
                             <Text style={styles.text}>

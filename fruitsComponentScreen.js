@@ -26,19 +26,17 @@ const FruitsComponent = props => {
     const filteredProducts = products.filter(item => item.type === '水果');
 
 
-    //const initialState = { quantity: 0 };
-    // const productTotalAmount = useSelector(state => state.filteredProducts.quantity);
+
     const productItems = useSelector(state => {
         const transformedProductItems = [];
         for (const key in state.products.items) {
             transformedProductItems.push({
                 productId: key,
-                productTitle: state.products.items[key].title,
-                productPrice: state.products.items[key].price,
-                // productQuantity: state.products.items[key].quantity,
-                productAmount: state.products.items[key].amount,
-                productImage: state.products.items[key].imageUrl,
-                productSum: state.products.items[key].sum
+                productTitle: state.filteredProducts.items[key].title,
+                productPrice: state.filteredProducts.items[key].price,
+                productAmount: state.filteredProducts.items[key].amount,
+                productImage: state.filteredProducts.items[key].imageUrl,
+                productSum: state.filteredProducts.items[key].sum
             });
         }
         return transformedProductItems.sort((a, b) =>
