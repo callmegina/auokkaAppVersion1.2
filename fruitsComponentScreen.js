@@ -7,6 +7,7 @@ import {
 import { useSelector, useDispatch, useState } from 'react-redux';
 import ProductItem from './component/productItem';
 import * as cartActions from './store/actions/cart';
+import * as productActions from './store/actions/product';
 
 
 import {
@@ -21,6 +22,8 @@ import { useNavigation, navigation } from '@react-navigation/native';
 
 const FruitsComponent = props => {
     const navigation = useNavigation();
+
+
     const products = useSelector(state => state.products.availableProducts);
 
     const filteredProducts = products.filter(item => item.type === '水果');
@@ -47,9 +50,11 @@ const FruitsComponent = props => {
 
     const dispatch = useDispatch();
 
-    const editProductHander = (id) => {
-        navigation.navigate('Detail Final', { productId: id });
-    }
+    /*    const editProductHander = (id) => {
+           navigation.navigate('Detail Final', { productId: id });
+       }
+       console.log(filteredProducts.productId) */
+
 
     return (
         <FlatList
@@ -60,10 +65,15 @@ const FruitsComponent = props => {
                     title={itemData.item.title}
                     price={itemData.item.price}
                     image={itemData.item.imageUrl}
-
                     netWeight={itemData.item.netWeight}
                     onViewDetail={() => {
-                        editProductHander(itemData.item.id);
+                        navigation.navigate('Detail Final', {
+
+                            productId: itemData.item.id,
+                            productTitle: itemData.item.title,
+                            productPrice: itemData.item.price,
+
+                        })
                     }}
                     onAddToCart={() => {
                         dispatch(cartActions.addToCart(itemData.item));

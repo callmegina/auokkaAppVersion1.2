@@ -20,37 +20,14 @@ const { width } = Dimensions.get('window');
 const height = width * 10 / 300;
 import { useSelector, useDispatch } from 'react-redux';
 
-
-
-import * as cartActions from './store/actions/cart';
+//import * as cartActions from './store/actions/cart';
 import { useNavigation, navigation, params } from '@react-navigation/native';
 
 
-import ProductDetailItem from './component/productDetailItem';
-
-const ProductDetailFinal = ({ route }) => {
-
-
-
-    const productId = route.params;
-    const productTitle = route.params;
-
-    console.log(productId);
-    console.log(productTitle);
-
-    const products = useSelector(state => state.products.availableProducts);
-
-    console.log(products);
-    /* 
-        const filteredProducts = products.filter(item => item.type === '水果');
-        const selectedProducts = useSelector(state =>
-            state.products.includes(prod => prod.id === productId)
-     */
+const ProductDetailItem = props => {
 
 
     return (
-
-
         <ScrollView>
             <View style={styles.container} >
                 <View style={styles.topContainer} >
@@ -68,8 +45,11 @@ const ProductDetailFinal = ({ route }) => {
                             showsButtons={false}
                             showsPagination={true}
                         >
-                            <Image source={require('./assets/bread.png')} style={styles.img} />
-                            <Image source={require('./assets/milk.png')} style={styles.img} />
+                            <Image source={{ uri: props.image }}
+                                style={styles.img} />
+
+                            <Image source={{ uri: props.image }}
+                                style={styles.img} />
 
                         </Swiper>
 
@@ -78,7 +58,7 @@ const ProductDetailFinal = ({ route }) => {
                         <View style={styles.midContainer} >
                             <Card>
                                 <CardItem>
-                                    <Text>bread</Text>
+                                    <Text>{props.title}</Text>
                                 </CardItem>
 
 
@@ -89,7 +69,7 @@ const ProductDetailFinal = ({ route }) => {
                                             width: 200,
                                             backgroundColor: '#60c73a',
                                         }}>
-                                        <Text style={{ color: 'white' }}>规格</Text>
+                                        <Text style={{ color: 'white' }}>{props.description}</Text>
                                     </Button>
 
                                     <Button small rounded transparent
@@ -99,7 +79,7 @@ const ProductDetailFinal = ({ route }) => {
                                             backgroundColor: '#60c73a',
                                             alignItems: 'center'
                                         }}>
-                                        <Text style={{ color: 'white' }}>介绍</Text>
+                                        <Text style={{ color: 'white' }}>{props.netWeight}</Text>
                                     </Button>
                                 </View>
 
@@ -148,7 +128,6 @@ const ProductDetailFinal = ({ route }) => {
                 </View >
             </View >
         </ScrollView>
-
     )
 }
 
@@ -159,4 +138,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ProductDetailFinal;
+export default ProductDetailItem;
