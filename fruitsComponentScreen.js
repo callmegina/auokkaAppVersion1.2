@@ -67,11 +67,16 @@ const FruitsComponent = props => {
                     image={itemData.item.imageUrl}
                     netWeight={itemData.item.netWeight}
                     onViewDetail={() => {
-                        navigation.navigate('Detail Final', {
-
+                        navigation.navigate('Detail Trial', {
                             productId: itemData.item.id,
                             productTitle: itemData.item.title,
                             productPrice: itemData.item.price,
+                            productImage: itemData.item.imageUrl,
+                            productType: itemData.item.type,
+                            productDescription: itemData.item.description,
+                            productNetWeight: itemData.item.netWeight,
+                            productPrice: itemData.item.price,
+
 
                         })
                     }}

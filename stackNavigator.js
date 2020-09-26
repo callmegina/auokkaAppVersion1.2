@@ -10,10 +10,10 @@ import FruitsComponent from './fruitsComponentScreen';
 import SeafoodComponent from './seaFoodComponentScreen';
 import DriedFoodComponent from './driedFoodComponentScreen';
 import CartScreen from './cartScreen';
-import ProductDetailFinal from './productDetailFinal';
 
 
 
+import ProductDetailTrial from './productDetailFinal';
 
 import AuthScreen from './AuthScreen';
 
@@ -37,7 +37,8 @@ const MainStackNavigator = () => {
         <Stack.Navigator screenOptions={screenOptionStyle}>
             <Stack.Screen name="Home" component={HomeEdited} />
             <Stack.Screen name="Fruit" component={FruitsComponent} />
-            <Stack.Screen name="Detail Final" component={ProductDetailFinal} />
+            <Stack.Screen name="Detail Trial" component={ProductDetailTrial} />
+
             <Stack.Screen name="Cart Screen" component={CartScreen} />
 
             <Stack.Screen name="Seafood" component={SeafoodComponent} />
