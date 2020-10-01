@@ -21,14 +21,35 @@ import { useNavigation } from '@react-navigation/native';
 
 const DriedFoodComponent = (props) => {
     const navigation = useNavigation();
+
     const products = useSelector(state => state.products.availableProducts);
 
     const filteredProducts = products.filter(item => item.type === '干货');
+    const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+
+    console.log(cartTotalAmount)
+    const productItems = useSelector(state => {
+        const transformedProductItems = [];
+        for (const key in state.products.items) {
+            transformedProductItems.push({
+                productId: key,
+                productTitle: state.filteredProducts.items[key].title,
+                productPrice: state.filteredProducts.items[key].price,
+                productAmount: state.filteredProducts.items[key].amount,
+                productImage: state.filteredProducts.items[key].imageUrl,
+                productSum: state.filteredProducts.items[key].sum,
+                productQuantity: state.filteredProducts.items[key].quantity,
+            });
+
+        }
+        return transformedProductItems.sort((a, b) =>
+            a.productId > b.productId ? 1 : -1
+        );
+    });
+
+
     const dispatch = useDispatch();
 
-    const editProductHander = (id) => {
-        navigation.navigate('Detail Final', { productId: id });
-    }
 
 
     return (
@@ -36,31 +57,42 @@ const DriedFoodComponent = (props) => {
             data={filteredProducts}
             keyExtractor={item => item.productId}
             renderItem={itemData => (
-                <ProductItem
-                    title={itemData.item.title}
-                    price={itemData.item.price}
-                    image={itemData.item.imageUrl}
 
-                    netWeight={itemData.item.netWeight}
+                <ProductItem
+                    pTitle={itemData.item.title}
+                    pPrice={itemData.item.price}
+                    pImage={itemData.item.imageUrl}
+                    pNewWeight={itemData.item.netWeight}
+                    pQuantity={itemData.item.quantity}
+
                     onViewDetail={() => {
-                        editProductHander(itemData.item.id);
+                        navigation.navigate('Detail Trial', {
+                            productId: itemData.item.id,
+                            productTitle: itemData.item.title,
+                            productPrice: itemData.item.price,
+                            productImage: itemData.item.imageUrl,
+                            productType: itemData.item.type,
+                            productDescription: itemData.item.description,
+                            productNetWeight: itemData.item.netWeight,
+                            productPrice: itemData.item.price,
+
+                        })
                     }}
                     onAddToCart={() => {
-                        dispatch(cartActions.addToCart(itemData.item));
+                        dispatch(cartActions.addToCart(itemData.item, cartTotalAmount));
                     }}
 
                     onRemove={() => {
-                        dispatch(cartActions.decreaseCartQuantity(itemData.item.productId));
+                        dispatch(cartActions.decreaseProductItemQuantity(itemData.item, cartTotalAmount));
                     }}
 
                     onAdd={() => {
-                        dispatch(cartActions.increaseCartQuantity(itemData.item.productId));
+                        dispatch(cartActions.increaseProductItemQuantity(itemData.item, cartTotalAmount));
                     }}
                 />
             )}
         />
     )
-
 }
 
 

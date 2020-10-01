@@ -1,14 +1,28 @@
 import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, Button, Text, StyleSheet, FlatList } from "react-native";
+import { useSelector } from 'react-redux';
+import OrderItem from '././component/orderItem';
 
-const TabOne = ({ navigation }) => {
+
+const TabOne = props => {
+    const orders = useSelector(state => state.orders.orders);
+
     return (
-        <View style={styles.center}>
-            <Text>Hi</Text>
-
-        </View>
+        <FlatList
+            data={orders}
+            keyExtractor={item => item.id}
+            renderItem={itemData => (
+                <OrderItem
+                    amount={itemData.item.totalAmount}
+                    date={itemData.item.readableDate}
+                    items={itemData.item.items}
+                />
+            )}
+        />
     );
 };
+
+
 
 const styles = StyleSheet.create({
     center: {

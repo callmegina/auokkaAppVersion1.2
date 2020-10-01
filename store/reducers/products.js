@@ -118,4 +118,3 @@ export default (state = initialState, action) => {
                         // totalAmount: state.totalAmount + updatedIncreaseItem.productTotal
                     }
                    } */
-

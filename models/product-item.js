@@ -4,7 +4,6 @@ class ProductItem {
         this.pQuantity = pQuantity;
         this.pPrice = pPrice;
         this.pTitle = pTitle;
-        this.ptSum = ptSum;
         this.pNewWeight = pNewWeight;
         this.pImage = pImage;
 

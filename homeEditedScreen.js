@@ -15,7 +15,7 @@ import { Feather } from '@expo/vector-icons';
 import FruitsComponent from './fruitsComponentScreen';
 import SeafoodComponent from './seaFoodComponentScreen';
 import DriedFoodComponent from './driedFoodComponentScreen';
-
+import DiaryComponent from './diaryComponentScreen';
 
 
 export default class HomeEdited extends React.Component {
@@ -58,11 +58,12 @@ export default class HomeEdited extends React.Component {
     }
 
     renderFoodCategory(itemSelected) {
-        console.log(itemSelected)
+
         switch (itemSelected) {
             case "水果": return <FruitsComponent />;
             case "干货": return <DriedFoodComponent />;
-            case "乳制品": return <SeafoodComponent />;
+            case "海鲜": return <SeafoodComponent />;
+            case "乳制品": return <DiaryComponent />;
             default: return <FruitsComponent />;
         }
     }
@@ -84,6 +85,9 @@ export default class HomeEdited extends React.Component {
                                 </TouchableOpacity>
                                 <TouchableOpacity >
                                     {this._selectItem('干货')}
+                                </TouchableOpacity>
+                                <TouchableOpacity >
+                                    {this._selectItem('海鲜')}
                                 </TouchableOpacity>
                                 <TouchableOpacity >
                                     {this._selectItem('乳制品')}
@@ -126,7 +130,8 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     itemSelectedColor: {
-        color: '#00bfff'
+        color: '#00bfff',
+
     },
     firstSection: {
         height: '12%',
@@ -161,6 +166,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginBottom: 20,
         backgroundColor: '#f2f2f2',
+
 
     },
 

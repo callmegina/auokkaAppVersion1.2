@@ -19,24 +19,35 @@ import { useNavigation, navigation } from '@react-navigation/native';
 import Product from "./models/product";
 import CartItem from './component/cartItem';
 import * as cartActions from './store/actions/cart';
+import * as ordersActions from './store/actions/orders';
+
+
 import { useSelector, useDispatch } from 'react-redux';
 
 const CartScreen = props => {
 
+    const products = useSelector(state => state.products.availableProducts);
+
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+    const sum = useSelector(state => state.cart.productSum);
+
+    console.log(cartTotalAmount);
+
     const cartItems = useSelector(state => {
         const transformedCartItems = [];
         for (const key in state.cart.items) {
             transformedCartItems.push({
                 productId: key,
-                productTitle: state.cart.items[key].productTitle,
-                productImage: state.cart.items[key].productImage,
                 productQuantity: state.cart.items[key].productQuantity,
-                productNetWeight: state.cart.items[key].productNetWeight,
                 productPrice: state.cart.items[key].productPrice,
+                productTitle: state.cart.items[key].productTitle,
                 productSum: state.cart.items[key].productSum,
+                productNetWeight: state.cart.items[key].productNetWeight,
+                productImage: state.cart.items[key].productImage,
+
             });
         }
+
 
         return transformedCartItems.sort((a, b) =>
             a.productId > b.productId ? 1 : -1
@@ -44,18 +55,13 @@ const CartScreen = props => {
     });
 
 
-    //not working for amount total calculation 
-    let cartTotal;
-    const totalForEachItem = useSelector(state => {
-        for (const key in state.cart.items) {
-            cartTotal += state.cart.items[key].productSum;
-        }
-        return cartTotal;
-    })
-
-
-
-
+    /*    let UpdatedTotal = useSelector(state => {
+           for (const key in state.cart.items) {
+               UpdatedTotal: state.cart.item[key].totalAmount + state.totalAmount
+           }
+           return UpdatedTotal;
+       });
+       console.log(UpdatedTotal) */
 
 
     const dispatch = useDispatch();
@@ -116,15 +122,14 @@ const CartScreen = props => {
                                     productNetWeight={itemData.item.productNetWeight}
                                     productImage={itemData.item.productImage}
 
+
                                     onRemove={() => {
-                                        dispatch(cartActions.decreaseCartQuantity(itemData.item.productId));
+                                        dispatch(cartActions.decreaseCartQuantity(itemData.item.productId, cartTotalAmount));
                                     }}
 
                                     onAdd={() => {
-                                        dispatch(cartActions.increaseCartQuantity(itemData.item.productId));
+                                        dispatch(cartActions.increaseCartQuantity(itemData.item.productId, cartTotalAmount));
                                     }}
-
-
                                 />
                             )}
                         />
@@ -139,7 +144,9 @@ const CartScreen = props => {
 
                     <View style={styles.footerPrice}><Text>$ {cartTotalAmount} </Text></View>
                     <View style={styles.btncontainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            dispatch(ordersActions.addOrder(cartItems, cartTotalAmount));
+                        }}>
                             <Text style={styles.text}>
                                 提交</Text>
                         </TouchableOpacity>

@@ -7,7 +7,7 @@ import {
 import { useSelector, useDispatch, useState } from 'react-redux';
 import ProductItem from './component/productItem';
 import * as cartActions from './store/actions/cart';
-import * as productActions from './store/actions/product';
+//import * as productActions from './store/actions/product';
 
 
 import {
@@ -23,10 +23,13 @@ import { useNavigation, navigation } from '@react-navigation/native';
 const FruitsComponent = props => {
     const navigation = useNavigation();
 
-
     const products = useSelector(state => state.products.availableProducts);
 
     const filteredProducts = products.filter(item => item.type === '水果');
+
+
+
+    //  const cartTotalAmount = useSelector(state => state.cart.totalAmount);
 
     const productItems = useSelector(state => {
         const transformedProductItems = [];
@@ -37,8 +40,10 @@ const FruitsComponent = props => {
                 productPrice: state.filteredProducts.items[key].price,
                 productAmount: state.filteredProducts.items[key].amount,
                 productImage: state.filteredProducts.items[key].imageUrl,
-                productSum: state.filteredProducts.items[key].sum
+                productSum: state.filteredProducts.items[key].sum,
+                productQuantity: state.filteredProducts.items[key].quantity,
             });
+
         }
         return transformedProductItems.sort((a, b) =>
             a.productId > b.productId ? 1 : -1
@@ -46,26 +51,24 @@ const FruitsComponent = props => {
     });
 
 
-
-
     const dispatch = useDispatch();
-
-    /*    const editProductHander = (id) => {
-           navigation.navigate('Detail Final', { productId: id });
-       }
-       console.log(filteredProducts.productId) */
 
 
     return (
+
+
         <FlatList
             data={filteredProducts}
             keyExtractor={item => item.productId}
             renderItem={itemData => (
+
                 <ProductItem
-                    title={itemData.item.title}
-                    price={itemData.item.price}
-                    image={itemData.item.imageUrl}
-                    netWeight={itemData.item.netWeight}
+                    pTitle={itemData.item.title}
+                    pPrice={itemData.item.price}
+                    pImage={itemData.item.imageUrl}
+                    pNewWeight={itemData.item.netWeight}
+                    pQuantity={itemData.item.quantity}
+
                     onViewDetail={() => {
                         navigation.navigate('Detail Trial', {
                             productId: itemData.item.id,
@@ -77,7 +80,6 @@ const FruitsComponent = props => {
                             productNetWeight: itemData.item.netWeight,
                             productPrice: itemData.item.price,
 
-
                         })
                     }}
                     onAddToCart={() => {
@@ -85,17 +87,16 @@ const FruitsComponent = props => {
                     }}
 
                     onRemove={() => {
-                        dispatch(cartActions.decreaseCartQuantity(itemData.item.productId));
+                        dispatch(cartActions.decreaseProductItemQuantity(itemData.item));
                     }}
 
                     onAdd={() => {
-                        dispatch(cartActions.increaseCartQuantity(itemData.item.productId));
+                        dispatch(cartActions.increaseProductItemQuantity(itemData.item));
                     }}
                 />
             )}
         />
     )
-
 
 };
 

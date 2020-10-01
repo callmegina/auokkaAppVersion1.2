@@ -2,14 +2,16 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Profile from './profileScreen';
-import OrderScreen from './myOrderScreen';
+
 import AddShipAddress from './addShipAddressScreen';
 import ShipAddressScreen from './shipAddressScreen';
 import HomeEdited from './homeEditedScreen';
 import FruitsComponent from './fruitsComponentScreen';
 import SeafoodComponent from './seaFoodComponentScreen';
 import DriedFoodComponent from './driedFoodComponentScreen';
+import DiaryComponent from './diaryComponentScreen';
 import CartScreen from './cartScreen';
+import OrderScreen from './myOrderScreen';
 
 
 
@@ -35,13 +37,17 @@ const screenOptionStyle = {
 const MainStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
+
             <Stack.Screen name="Home" component={HomeEdited} />
             <Stack.Screen name="Fruit" component={FruitsComponent} />
+            <Stack.Screen name="Diary" component={DiaryComponent} />
+            <Stack.Screen name="Dried Food" component={DriedFoodComponent} />
             <Stack.Screen name="Detail Trial" component={ProductDetailTrial} />
 
             <Stack.Screen name="Cart Screen" component={CartScreen} />
 
             <Stack.Screen name="Seafood" component={SeafoodComponent} />
+
 
         </Stack.Navigator>
     );

@@ -4,12 +4,11 @@ import {
     TouchableOpacity, Image, FlatList
 } from "react-native";
 
-
-
-
 import { useSelector, useDispatch, useState } from 'react-redux';
 import ProductItem from './component/productItem';
 import * as cartActions from './store/actions/cart';
+//import * as productActions from './store/actions/product';
+
 
 import {
     Container, Header, CardItem, List,
@@ -18,16 +17,15 @@ import {
 } from 'native-base';
 
 import { Feather } from '@expo/vector-icons';
-import { render } from "react-dom";
-import { useRoute } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, navigation } from '@react-navigation/native';
 
-const SeafoodComponent = (props) => {
+
+const DiaryComponent = props => {
     const navigation = useNavigation();
 
     const products = useSelector(state => state.products.availableProducts);
 
-    const filteredProducts = products.filter(item => item.type === '海鲜');
+    const filteredProducts = products.filter(item => item.type === '乳制品');
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
 
     console.log(cartTotalAmount)
@@ -52,7 +50,6 @@ const SeafoodComponent = (props) => {
 
 
     const dispatch = useDispatch();
-
 
     return (
         <FlatList
@@ -96,7 +93,9 @@ const SeafoodComponent = (props) => {
         />
     )
 
-}
+};
 
 
-export default SeafoodComponent;
+
+
+export default DiaryComponent;

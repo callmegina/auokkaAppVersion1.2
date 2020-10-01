@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     View, Button, Text, StyleSheet,
     TouchableOpacity, Image, ScrollView
@@ -15,6 +15,8 @@ import { render } from "react-dom";
 
 const ProductItem = props => {
 
+
+    const [pQuantity] = useState(0);
     return (
         <View>
             <ScrollView>
@@ -24,7 +26,7 @@ const ProductItem = props => {
                             <View style={styles.secondDivTwoOne}>
 
                                 <Image style={styles.image}
-                                    source={{ uri: props.image }}
+                                    source={{ uri: props.pImage }}
                                     style={{
                                         width: 60,
                                         height: 65
@@ -35,7 +37,7 @@ const ProductItem = props => {
 
                             <View style={styles.secondDivTwoTwo}>
                                 <TouchableOpacity onPress={props.onViewDetail}>
-                                    <Text>{props.title}</Text>
+                                    <Text>{props.pTitle}</Text>
                                 </TouchableOpacity>
                                 <View style={{
                                     padding: 12,
@@ -46,7 +48,7 @@ const ProductItem = props => {
                                     marginTop: 5,
                                 }} >
 
-                                    <Text>{props.netWeight}</Text>
+                                    <Text>{props.pNewWeight}</Text>
                                 </View>
                             </View>
 
@@ -61,7 +63,7 @@ const ProductItem = props => {
                                         paddingLeft: 5,
                                         paddingRight: 5
 
-                                    }}>  quantity </Text>
+                                    }}>  {props.pQuantity} </Text>
                                     <TouchableOpacity onPress={props.onAdd}>
                                         <Feather name='plus-circle' color='#60c73a' size={22} />
                                     </TouchableOpacity>
@@ -71,7 +73,7 @@ const ProductItem = props => {
                                 }}>
                                     <Text style={{
                                         color: 'red',
-                                    }}>${props.price}</Text>
+                                    }}>${props.pPrice}</Text>
                                     <TouchableOpacity onPress={props.onAddToCart}><Text>加入购物车</Text></TouchableOpacity>
                                 </View>
                             </View>
@@ -81,6 +83,10 @@ const ProductItem = props => {
             </ScrollView>
         </View>
     )
+
+
+
+
 
 }
 const styles = StyleSheet.create({
