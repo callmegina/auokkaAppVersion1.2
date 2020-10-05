@@ -6,3 +6,8 @@ export const addOrder = (cartItems, totalAmount) => {
         orderData: { items: cartItems, amount: totalAmount }
     };
 };
+
+
+
+
+

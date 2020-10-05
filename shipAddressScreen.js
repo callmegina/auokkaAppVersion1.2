@@ -7,6 +7,7 @@ import {
 
 import { Label, Form, Item, Input, Container } from 'native-base';
 
+import PhoneInput from 'react-native-phone-input'
 const ShipAddressScreen = ({ navigation }) => {
     return (
 
@@ -26,7 +27,8 @@ const ShipAddressScreen = ({ navigation }) => {
                     paddingLeft: 0, marginLeft: 0,
 
                 }}>
-                    <Label>+86 China</Label>
+
+
                     <Input placeholder="联系电话" />
                 </Item>
             </Form>
