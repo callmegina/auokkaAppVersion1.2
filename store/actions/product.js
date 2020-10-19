@@ -1,16 +1,52 @@
-export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY';
-export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY';
-export const GO_TO_PRODUCT_DETAIL = 'GO_TO_PRODUCT_DETAIL'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const GO_TO_PRODUCT_DETAIL = 'GO_TO_PRODUCT_DETAIL';
 
-export const decreaseProductQuantity = productId => {
-    return { type: DECREASE_PRODUCT_QUANTITY, pid: productId };
+
+export const deleteProduct = productId => {
+    return { type: DELETE_PRODUCT, pid: productId };
 };
 
-export const increaseProductQuantity = productId => {
-    return { type: INCREASE_PRODUCT_QUANTITY, pid: productId };
+export const createProduct = (title, description, imageUrl, price) => {
+    return async dispatch => {
+
+        const response = await fetch('https://rn-complete-guide.firebaseio.com/products.json', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                description,
+                imageUrl,
+                price
+            })
+        });
+
+        const resData = await response.json();
+
+        dispatch({
+            type: CREATE_PRODUCT,
+            productData: {
+                id: resData.name,
+                title,
+                description,
+                imageUrl,
+                price
+            }
+        });
+    };
 };
 
-export const GoToProductDetail = productId => {
-    return { type: GO_TO_PRODUCT_DETAIL, pid: productId };
+export const updateProduct = (id, title, description, imageUrl) => {
+    return {
+        type: UPDATE_PRODUCT,
+        pid: id,
+        productData: {
+            title,
+            description,
+            imageUrl
+        }
+    };
 };
-

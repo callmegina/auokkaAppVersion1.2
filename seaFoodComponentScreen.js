@@ -54,6 +54,7 @@ const SeafoodComponent = (props) => {
     const dispatch = useDispatch();
 
 
+
     return (
         <FlatList
             data={filteredProducts}
@@ -62,10 +63,11 @@ const SeafoodComponent = (props) => {
 
                 <ProductItem
                     pTitle={itemData.item.title}
-                    pPrice={itemData.item.price}
+                    productOriPrice={itemData.item.productOriPrice}
+                    productSalePrice={itemData.item.productSalePrice}
                     pImage={itemData.item.imageUrl}
-                    pNewWeight={itemData.item.netWeight}
                     pQuantity={itemData.item.quantity}
+
 
                     onViewDetail={() => {
                         navigation.navigate('Detail Trial', {
@@ -77,26 +79,26 @@ const SeafoodComponent = (props) => {
                             productDescription: itemData.item.description,
                             productNetWeight: itemData.item.netWeight,
                             productPrice: itemData.item.price,
-
                         })
                     }}
                     onAddToCart={() => {
-                        dispatch(cartActions.addToCart(itemData.item, cartTotalAmount));
+                        dispatch(cartActions.addToCart(itemData.item));
                     }}
 
                     onRemove={() => {
-                        dispatch(cartActions.decreaseProductItemQuantity(itemData.item, cartTotalAmount));
+                        dispatch(cartActions.decreaseProductItemQuantity(itemData.item));
                     }}
 
                     onAdd={() => {
-                        dispatch(cartActions.increaseProductItemQuantity(itemData.item,));
+                        dispatch(cartActions.increaseProductItemQuantity(itemData.item));
                     }}
                 />
             )}
         />
     )
 
-}
+};
+
 
 
 export default SeafoodComponent;

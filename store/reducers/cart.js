@@ -15,13 +15,18 @@ const initialState = {
     items: {},
     totalAmount: 0,
     productQuantity: 0,
-    productSum: 0
+    productSum: 0,
+    
+    
+    
 
 }
 
 export default (state = initialState, action) => {
 
     switch (action.type) {
+
+
 
 
         //add to cart 

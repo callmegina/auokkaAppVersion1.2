@@ -20,16 +20,24 @@ const LogInScreen = ({ navigation }) => {
 
             <Text>使用购物车前请登录</Text>
             <Button small rounded transparent
-                onPress={() => navigation.navigate('Wechat LogIn Screen')}
-
+                onPress={() => navigation.navigate('EmailAuthScreen')}
                 style={{
                     width: 200,
                     backgroundColor: '#60c73a',
                     alignSelf: "center",
-
-
+                    marginTop: 20,
                 }}>
-                <Text style={styles.center}>登录</Text>
+                <Text style={styles.center}>邮件登录</Text>
+            </Button>
+            <Button small rounded transparent
+                onPress={() => navigation.navigate('MobileAuthScreen')}
+                style={{
+                    width: 200,
+                    backgroundColor: '#60c73a',
+                    alignSelf: "center",
+                    marginTop: 20,
+                }}>
+                <Text style={styles.center}>手机登录</Text>
             </Button>
 
         </View>

@@ -7,90 +7,121 @@ import {
 import {
     Container, Header, CardItem, List,
     ListItem, Icon, Content, Footer,
-    FooterTab, Badge, Card, Alert
+    FooterTab, Badge, Card, Alert, ActionSheet
 } from 'native-base';
 
 import { Feather } from '@expo/vector-icons';
 import { render } from "react-dom";
+import { red } from "@material-ui/core/colors";
 
-const ProductItem = props => {
+import { useSelector, useDispatch } from 'react-redux';
 
 
-    const [pQuantity] = useState(0);
-    return (
-        <View>
-            <ScrollView>
-                <Card>
-                    <CardItem >
-                        <View style={styles.secondDivTwo}>
-                            <View style={styles.secondDivTwoOne}>
 
-                                <Image style={styles.image}
-                                    source={{ uri: props.pImage }}
-                                    style={{
-                                        width: 60,
-                                        height: 65
-                                    }}
-                                />
+export default class ProductItem extends React.Component {
+    constructor(props) {
+        super(props);
 
-                            </View>
+        this.state = {
+            show: false,
+            productQuantity: 0,
+            button: true
+        };
+    }
+    ShowHideComponent = () => {
+        if (this.state.show == false) {
+            this.setState({ show: true });
+            button: this.state.button
+        }
+    };
 
-                            <View style={styles.secondDivTwoTwo}>
-                                <TouchableOpacity onPress={props.onViewDetail}>
-                                    <Text>{props.pTitle}</Text>
-                                </TouchableOpacity>
-                                <View style={{
-                                    padding: 12,
-                                    backgroundColor: '#f2f2f2',
-                                    borderRadius: 30,
-                                    alignSelf: 'flex-start',
-                                    width: '95%',
-                                    marginTop: 5,
-                                }} >
 
-                                    <Text>{props.pNewWeight}</Text>
+    render() {
+
+        return (
+            <View>
+                <ScrollView>
+                    <TouchableOpacity>
+
+                        <Card>
+                            <CardItem >
+                                <View style={styles.secondDivTwo}>
+                                    <View style={styles.secondDivTwoOne}>
+
+                                        <Image style={styles.image}
+                                            source={{ uri: this.props.pImage }}
+                                            style={{
+                                                width: 60,
+                                                height: 65
+                                            }}
+                                        />
+
+                                    </View>
+
+                                    <View style={styles.secondDivTwoTwo}>
+                                        <TouchableOpacity onPress={this.props.onViewDetail}>
+                                            <Text>{this.props.pTitle}</Text>
+                                        </TouchableOpacity>
+
+
+                                        <Text style={{
+                                            textDecorationLine: 'line-through',
+
+
+                                        }}>原价 ￥ {this.props.productOriPrice}</Text>
+                                        <Text style={{
+                                            color: 'red'
+
+                                        }}>特价 ￥ {this.props.productSalePrice}</Text>
+
+
+                                    </View>
+
+                                    <View style={styles.secondDivTwoThree}>
+                                        <View style={styles.addOrMinusBtn}>
+
+
+                                            {this.state.show ? (
+                                                <View style={styles.showhide}>
+                                                    <TouchableOpacity onPress={this.props.decreaseProductItemQuantity}>
+                                                        <Feather name='minus-circle' color='#60c73a' size={22} />
+                                                    </TouchableOpacity>
+
+                                                    <View>
+                                                        <Text style={{
+                                                            fontSize: 15,
+                                                            paddingLeft: 5,
+                                                            paddingRight: 5
+
+                                                        }}> 0 </Text>
+                                                    </View>
+                                                </View>
+                                            ) : <View></View>}
+
+
+                                            <TouchableOpacity onPress={() => { this.ShowHideComponent; this.props.increaseProductItemQuantity }} >
+                                                <Feather name='plus-circle' color='#60c73a' size={22} />
+                                            </TouchableOpacity>
+                                        </View>
+
+                                    </View>
                                 </View>
-                            </View>
-
-                            <View style={styles.secondDivTwoThree}>
-                                <View style={styles.addOrMinusBtn}>
-
-                                    <TouchableOpacity onPress={props.onRemove}>
-                                        <Feather name='minus-circle' color='#60c73a' size={22} />
-                                    </TouchableOpacity>
-                                    <Text style={{
-                                        fontSize: 15,
-                                        paddingLeft: 5,
-                                        paddingRight: 5
-
-                                    }}>  {props.pQuantity} </Text>
-                                    <TouchableOpacity onPress={props.onAdd}>
-                                        <Feather name='plus-circle' color='#60c73a' size={22} />
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={{
-                                    alignSelf: 'flex-end'
-                                }}>
-                                    <Text style={{
-                                        color: 'red',
-                                    }}>${props.pPrice}</Text>
-                                    <TouchableOpacity onPress={props.onAddToCart}><Text>加入购物车</Text></TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
-                    </CardItem>
-                </Card>
-            </ScrollView>
-        </View>
-    )
+                            </CardItem>
+                        </Card>
+                    </TouchableOpacity>
+                </ScrollView>
+            </View>
+        )
 
 
-
-
+    }
 
 }
-const styles = StyleSheet.create({
 
+
+
+
+const styles = StyleSheet.create({
 
 
     footer: {
@@ -116,6 +147,12 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         flex: 11,
         paddingLeft: 10,
+
+        padding: 12,
+        alignSelf: 'flex-start',
+        width: '95%',
+
+
     },
 
     secondDivTwoThree: {
@@ -157,8 +194,9 @@ const styles = StyleSheet.create({
     image: {
         width: '30%',
         height: '40%'
+    },
+    showhide: {
+        flexDirection: 'row',
     }
 
 });
-
-export default ProductItem;

@@ -17,11 +17,14 @@ import OrderScreen from './myOrderScreen';
 
 import ProductDetailTrial from './productDetailFinal';
 
-import AuthScreen from './AuthScreen';
-import CountryScreen from './country';
-import LogInScreen from './logInScreen';
-import WeChatLoginScreen from './wechatLoginScreen';
+import EmailAuthScreen from './emailAuth';
+import MobileAuthScreen from './mobileAuth';
 
+import LogInScreen from './logInScreen';
+
+
+
+import EditProductScreen from './editedProductScreen';
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
@@ -57,10 +60,12 @@ const MainStackNavigator = () => {
 const CartStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Cart Screen" component={CartScreen} />
 
+            <Stack.Screen name="Cart Screen" component={CartScreen} />
             <Stack.Screen name="Add Shipping Address" component={AddShipAddress} />
             <Stack.Screen name="ShipAddress Screen" component={ShipAddressScreen} />
+            <Stack.Screen name="EditProductScreen" component={EditProductScreen} />
+
         </Stack.Navigator>
     );
 }
@@ -69,16 +74,16 @@ const CartStackNavigator = () => {
 const ProfileStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Login Screen" component={LogInScreen} />
-            <Stack.Screen name="Wechat LogIn Screen" component={WeChatLoginScreen} />
 
+            <Stack.Screen name="LogIn Screen" component={LogInScreen} />
+            <Stack.Screen name="MobileAuthScreen" component={MobileAuthScreen} />
+            <Stack.Screen name="EmailAuthScreen" component={EmailAuthScreen} />
             <Stack.Screen name="Profile" component={Profile} />
 
             <Stack.Screen name="ShipAddress Screen" component={ShipAddressScreen} />
             <Stack.Screen name="Add Shipping Address" component={AddShipAddress} />
             <Stack.Screen name="Order Screen" component={OrderScreen} />
 
-            <Stack.Screen name="Auth Screen" component={AuthScreen} />
         </Stack.Navigator>
 
     );

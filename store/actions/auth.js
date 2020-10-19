@@ -1,5 +1,5 @@
-export const SIGNUP = 'SIGNUP';
-export const LOGIN = 'LOGIN';
+export const EMAILSIGNUP = 'EMAILSIGNUP';
+export const EMAILLOGIN = 'EMAILLOGIN';
 
 export const signup = (email, password) => {
     return async dispatch => {
@@ -30,9 +30,11 @@ export const signup = (email, password) => {
 
         const resData = await response.json();
         console.log(resData);
-        dispatch({ type: SIGNUP });
+        dispatch({ type: EMAILSIGNUP });
     };
 };
+
+
 
 export const login = (email, password) => {
     return async dispatch => {
@@ -65,6 +67,9 @@ export const login = (email, password) => {
 
         const resData = await response.json();
         console.log(resData);
-        dispatch({ type: LOGIN });
+        dispatch({ type: EMAILLOGIN });
     };
 };
+
+
+

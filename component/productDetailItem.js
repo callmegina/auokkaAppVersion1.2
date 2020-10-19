@@ -26,7 +26,6 @@ import { useNavigation, navigation, params } from '@react-navigation/native';
 
 const ProductDetailItem = props => {
 
-
     return (
         <ScrollView>
             <View style={styles.container} >

@@ -1,12 +1,11 @@
 class ProductItem {
-    constructor(pQuantity, pPrice, pTitle,
-        ptSum, pNewWeight, pImage) {
+    constructor(productOriPrice, productSalePrice, pQuantity,
+        pTitle, pImage) {
+        this.productOriPrice = productOriPrice;
+        this.productSalePrice = productSalePrice;
         this.pQuantity = pQuantity;
-        this.pPrice = pPrice;
         this.pTitle = pTitle;
-        this.pNewWeight = pNewWeight;
         this.pImage = pImage;
-
     }
 }
 

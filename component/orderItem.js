@@ -14,7 +14,6 @@ const OrderItem = props => {
                 <Text style={styles.date}>{props.date}</Text>
             </View>
             <Button
-
                 title={showDetails ? 'Hide Details' : 'Show Details'}
                 onPress={() => {
                     setShowDetails(prevState => !prevState);

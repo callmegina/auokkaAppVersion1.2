@@ -37,12 +37,14 @@ const FruitsComponent = props => {
             transformedProductItems.push({
                 productId: key,
                 productTitle: state.filteredProducts.items[key].title,
-                productPrice: state.filteredProducts.items[key].price,
+                productOriPrice: state.filteredProducts.items[key].productOriPrice,
+                productSalePrice: state.filteredProducts.items[key].productSalePrice,
                 productAmount: state.filteredProducts.items[key].amount,
                 productImage: state.filteredProducts.items[key].imageUrl,
                 productSum: state.filteredProducts.items[key].sum,
                 productQuantity: state.filteredProducts.items[key].quantity,
             });
+
 
         }
         return transformedProductItems.sort((a, b) =>
@@ -50,13 +52,10 @@ const FruitsComponent = props => {
         );
     });
 
-
     const dispatch = useDispatch();
 
 
     return (
-
-
         <FlatList
             data={filteredProducts}
             keyExtractor={item => item.productId}
@@ -64,9 +63,9 @@ const FruitsComponent = props => {
 
                 <ProductItem
                     pTitle={itemData.item.title}
-                    pPrice={itemData.item.price}
+                    productOriPrice={itemData.item.productOriPrice}
+                    productSalePrice={itemData.item.productSalePrice}
                     pImage={itemData.item.imageUrl}
-                    pNewWeight={itemData.item.netWeight}
                     pQuantity={itemData.item.quantity}
 
                     onViewDetail={() => {
@@ -79,7 +78,6 @@ const FruitsComponent = props => {
                             productDescription: itemData.item.description,
                             productNetWeight: itemData.item.netWeight,
                             productPrice: itemData.item.price,
-
                         })
                     }}
                     onAddToCart={() => {

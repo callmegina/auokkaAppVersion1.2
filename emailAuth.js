@@ -8,10 +8,10 @@ import {
     ActivityIndicator,
     Alert
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+
 import { useDispatch } from 'react-redux';
 
-import Input from './component/UI/input';
+import EmailInput from './component/UI/emailInput';
 import Card from './component/UI/card';
 
 import * as authActions from './store/actions/auth';
@@ -41,7 +41,7 @@ const formReducer = (state, action) => {
     return state;
 };
 
-const AuthScreen = props => {
+const EmailAuthScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const [isSignup, setIsSignup] = useState(false);
@@ -82,6 +82,7 @@ const AuthScreen = props => {
         setIsLoading(true);
         try {
             await dispatch(action);
+            props.navigation.navigate('Home')
         } catch (err) {
             setError(err.message);
         }
@@ -100,6 +101,7 @@ const AuthScreen = props => {
         [dispatchFormState]
     );
 
+
     return (
         <KeyboardAvoidingView
             behavior="padding"
@@ -109,7 +111,7 @@ const AuthScreen = props => {
 
             <Card style={styles.authContainer}>
                 <ScrollView>
-                    <Input
+                    <EmailInput
                         id="email"
                         label="E-Mail"
                         keyboardType="email-address"
@@ -120,7 +122,7 @@ const AuthScreen = props => {
                         onInputChange={inputChangeHandler}
                         initialValue=""
                     />
-                    <Input
+                    <EmailInput
                         id="password"
                         label="Password"
                         keyboardType="default"
@@ -132,6 +134,7 @@ const AuthScreen = props => {
                         onInputChange={inputChangeHandler}
                         initialValue=""
                     />
+
                     <View style={styles.buttonContainer}>
                         {isLoading ? (
                             <ActivityIndicator size="small" />
@@ -159,9 +162,6 @@ const AuthScreen = props => {
     );
 };
 
-AuthScreen.navigationOptions = {
-    headerTitle: 'Authenticate'
-};
 
 const styles = StyleSheet.create({
     screen: {
@@ -179,4 +179,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AuthScreen;
+export default EmailAuthScreen;

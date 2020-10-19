@@ -65,7 +65,11 @@ const CartScreen = props => {
 
 
     const dispatch = useDispatch();
-
+    const sendOrderHandler = async () => {
+        setIsLoading(true);
+        await dispatch(ordersActions.addOrder(cartItems, cartTotalAmount));
+        setIsLoading(false);
+    };
     return (
 
         <View style={styles.container}>
@@ -121,8 +125,6 @@ const CartScreen = props => {
                                     productSum={itemData.item.productSum}
                                     productNetWeight={itemData.item.productNetWeight}
                                     productImage={itemData.item.productImage}
-
-
                                     onRemove={() => {
                                         dispatch(cartActions.decreaseCartQuantity(itemData.item.productId, cartTotalAmount));
                                     }}
