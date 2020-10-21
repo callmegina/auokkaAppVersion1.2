@@ -24,17 +24,34 @@ export default class ProductItem extends React.Component {
 
         this.state = {
             show: false,
-            productQuantity: 0,
+            count: 0,
             button: true
         };
+
+        this.increment = this.increment.bind(this)
+        this.decrement = this.decrement.bind(this)
     }
-    ShowHideComponent = () => {
+    /* ShowHideComponent = () => {
         if (this.state.show == false) {
             this.setState({ show: true });
             button: this.state.button
         }
+    }; */
+
+    increment() {
+        this.setState({
+            count: this.state.count + 1
+        });
     };
 
+    decrement() {
+        if (this.state.count > 0) {
+            this.setState({
+                count: this.state.count - 1
+            });
+        }
+        this.state.count = 0
+    };
 
     render() {
 
@@ -81,29 +98,31 @@ export default class ProductItem extends React.Component {
                                         <View style={styles.addOrMinusBtn}>
 
 
-                                            {this.state.show ? (
-                                                <View style={styles.showhide}>
-                                                    <TouchableOpacity onPress={this.props.decreaseProductItemQuantity}>
-                                                        <Feather name='minus-circle' color='#60c73a' size={22} />
-                                                    </TouchableOpacity>
 
-                                                    <View>
-                                                        <Text style={{
-                                                            fontSize: 15,
-                                                            paddingLeft: 5,
-                                                            paddingRight: 5
+                                            <View style={styles.showhide}>
+                                                <TouchableOpacity onPress={this.decrement}>
+                                                    <Feather name='minus-circle' color='#60c73a' size={22} />
+                                                </TouchableOpacity>
 
-                                                        }}> 0 </Text>
-                                                    </View>
+                                                <View>
+                                                    <Text style={{
+                                                        fontSize: 15,
+                                                        paddingLeft: 5,
+                                                        paddingRight: 5
+
+                                                    }}> {this.state.count} </Text>
                                                 </View>
-                                            ) : <View></View>}
+                                            </View>
 
 
-                                            <TouchableOpacity onPress={() => { this.ShowHideComponent; this.props.increaseProductItemQuantity }} >
+                                            <TouchableOpacity onPress={this.increment} >
                                                 <Feather name='plus-circle' color='#60c73a' size={22} />
                                             </TouchableOpacity>
-                                        </View>
 
+                                        </View>
+                                        <View style={styles.cart}>
+                                            <TouchableOpacity onPress={this.props.onAddToCart}><Text>加入购物车</Text></TouchableOpacity>
+                                        </View>
                                     </View>
                                 </View>
                             </CardItem>
@@ -197,6 +216,9 @@ const styles = StyleSheet.create({
     },
     showhide: {
         flexDirection: 'row',
+    },
+    cart: {
+        alignItems: 'flex-end',
     }
 
 });

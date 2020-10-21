@@ -16,9 +16,9 @@ const initialState = {
     totalAmount: 0,
     productQuantity: 0,
     productSum: 0,
-    
-    
-    
+
+
+
 
 }
 
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
         case ADD_TO_CART:
             const addedProduct = action.product;
             console.log(addedProduct);
-            const prodPrice = addedProduct.price;
+            const prodPrice = addedProduct.productSalePrice;
             const prodTitle = addedProduct.title;
             const productNetWeight = addedProduct.netWeight;
             const productImage = addedProduct.imageUrl;
@@ -58,7 +58,6 @@ export default (state = initialState, action) => {
                 ...state,
                 items: { ...state.items, [addedProduct.id]: updatedOrNewCartItem },
                 totalAmount: state.totalAmount + updatedOrNewCartItem.productSum,
-
             };
 
 

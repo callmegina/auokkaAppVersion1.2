@@ -33,6 +33,8 @@ const CartScreen = props => {
 
     console.log(cartTotalAmount);
 
+
+
     const cartItems = useSelector(state => {
         const transformedCartItems = [];
         for (const key in state.cart.items) {
@@ -48,20 +50,19 @@ const CartScreen = props => {
             });
         }
 
-
         return transformedCartItems.sort((a, b) =>
             a.productId > b.productId ? 1 : -1
         );
     });
 
 
-    /*    let UpdatedTotal = useSelector(state => {
-           for (const key in state.cart.items) {
-               UpdatedTotal: state.cart.item[key].totalAmount + state.totalAmount
-           }
-           return UpdatedTotal;
-       });
-       console.log(UpdatedTotal) */
+    let UpdatedTotal = useSelector(state => {
+        for (const key in state.cart.items) {
+            UpdatedTotal: state.cart.items[key].totalAmount + state.cart.items[key].productSum
+        }
+        return UpdatedTotal;
+    });
+    console.log(UpdatedTotal);
 
 
     const dispatch = useDispatch();
@@ -144,7 +145,7 @@ const CartScreen = props => {
 
                 <View style={styles.footer}>
 
-                    <View style={styles.footerPrice}><Text>$ {cartTotalAmount} </Text></View>
+                    <View style={styles.footerPrice}><Text>$ {UpdatedTotal} </Text></View>
                     <View style={styles.btncontainer}>
                         <TouchableOpacity onPress={() => {
                             dispatch(ordersActions.addOrder(cartItems, cartTotalAmount));

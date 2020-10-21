@@ -22,7 +22,7 @@ import MobileAuthScreen from './mobileAuth';
 
 import LogInScreen from './logInScreen';
 
-
+import StartingScreen from './startingScreen';
 
 import EditProductScreen from './editedProductScreen';
 const Stack = createStackNavigator();
@@ -45,6 +45,7 @@ const MainStackNavigator = () => {
         <Stack.Navigator screenOptions={screenOptionStyle}>
 
             <Stack.Screen name="Home" component={HomeEdited} />
+            <Stack.Screen name="StartingScreen" component={StartingScreen} />
             <Stack.Screen name="Fruit" component={FruitsComponent} />
             <Stack.Screen name="Diary" component={DiaryComponent} />
             <Stack.Screen name="Dried Food" component={DriedFoodComponent} />
@@ -60,7 +61,6 @@ const MainStackNavigator = () => {
 const CartStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-
             <Stack.Screen name="Cart Screen" component={CartScreen} />
             <Stack.Screen name="Add Shipping Address" component={AddShipAddress} />
             <Stack.Screen name="ShipAddress Screen" component={ShipAddressScreen} />

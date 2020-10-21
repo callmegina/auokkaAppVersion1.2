@@ -4,7 +4,6 @@ import { useState } from 'react';
 import ProductItem from '../../models/product-item';
 
 import {
-
     DELETE_PRODUCT,
     CREATE_PRODUCT,
     UPDATE_PRODUCT,
@@ -16,8 +15,6 @@ const initialState = {
     products: PRODUCTS,
     availableProducts: PRODUCTS,
     userProducts: PRODUCTS.filter(prod => prod.ownerId === 'u1'),
-
-
     items: {},
     totalAmount: 0,
     pQuantity: 0,
@@ -25,6 +22,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+
         case CREATE_PRODUCT:
             const newProduct = new Product(
                 action.productData.id,
@@ -65,7 +63,6 @@ export default (state = initialState, action) => {
                 availableProducts: updatedAvailableProducts,
                 userProducts: updatedUserProducts
             };
-
 
 
         case DELETE_PRODUCT:
